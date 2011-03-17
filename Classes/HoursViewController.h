@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HourEntryViewController.h"
 
-
-@interface HoursViewController : UITableViewController {
+@interface HoursViewController : UITableViewController <HourEntryDelegate> {
     NSDictionary *account;
     NSArray *range;
 }

@@ -35,6 +35,9 @@
 		91AFAD861331A75C00D28EAF /* HoursViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91AFAD841331A75C00D28EAF /* HoursViewController.m */; };
 		91B724AA1330255800BC8575 /* SynchronousWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B724A91330255800BC8575 /* SynchronousWebView.m */; };
 		91BAC6551332794400D3D03E /* LoginController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91BAC6541332794400D3D03E /* LoginController.xib */; };
+		91BAC6C11332B2CA00D3D03E /* HourEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91BAC6BF1332B2CA00D3D03E /* HourEntryViewController.m */; };
+		91BAC6C41332B2E300D3D03E /* HourEntryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91BAC6C31332B2E300D3D03E /* HourEntryViewController.xib */; };
+		91BAC6C61332BE8D00D3D03E /* saveHours.js in Sources */ = {isa = PBXBuildFile; fileRef = 91BAC6C51332BE8D00D3D03E /* saveHours.js */; };
 		91C57E9D1326F0EC00578288 /* DeltekService.m in Sources */ = {isa = PBXBuildFile; fileRef = 91C57E9C1326F0EC00578288 /* DeltekService.m */; };
 /* End PBXBuildFile section */
 
@@ -89,6 +92,10 @@
 		91B724A81330255800BC8575 /* SynchronousWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynchronousWebView.h; sourceTree = "<group>"; };
 		91B724A91330255800BC8575 /* SynchronousWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SynchronousWebView.m; sourceTree = "<group>"; };
 		91BAC6541332794400D3D03E /* LoginController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginController.xib; sourceTree = "<group>"; };
+		91BAC6BE1332B2CA00D3D03E /* HourEntryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HourEntryViewController.h; sourceTree = "<group>"; };
+		91BAC6BF1332B2CA00D3D03E /* HourEntryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HourEntryViewController.m; sourceTree = "<group>"; };
+		91BAC6C31332B2E300D3D03E /* HourEntryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HourEntryViewController.xib; sourceTree = "<group>"; };
+		91BAC6C51332BE8D00D3D03E /* saveHours.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = saveHours.js; sourceTree = "<group>"; };
 		91C57E9B1326F0EC00578288 /* DeltekService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeltekService.h; sourceTree = "<group>"; };
 		91C57E9C1326F0EC00578288 /* DeltekService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeltekService.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -199,6 +206,8 @@
 				91AFAD841331A75C00D28EAF /* HoursViewController.m */,
 				91719D5613326D46006B0033 /* LoginController.h */,
 				91719D5713326D46006B0033 /* LoginController.m */,
+				91BAC6BE1332B2CA00D3D03E /* HourEntryViewController.h */,
+				91BAC6BF1332B2CA00D3D03E /* HourEntryViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -234,6 +243,7 @@
 			children = (
 				9141F06B1332391700D0B6BA /* login.js */,
 				9141F06C1332391700D0B6BA /* queryPage.js */,
+				91BAC6C51332BE8D00D3D03E /* saveHours.js */,
 			);
 			path = js;
 			sourceTree = "<group>";
@@ -241,6 +251,7 @@
 		9141F06D1332391700D0B6BA /* xib */ = {
 			isa = PBXGroup;
 			children = (
+				91BAC6C31332B2E300D3D03E /* HourEntryViewController.xib */,
 				9141F06E1332391700D0B6BA /* AccountsViewController.xib */,
 				9141F06F1332391700D0B6BA /* HoursViewController.xib */,
 				9141F0701332391700D0B6BA /* MainWindow.xib */,
@@ -312,6 +323,7 @@
 				91719D5013326292006B0033 /* IconSmall.png in Resources */,
 				91719D5213326296006B0033 /* Icon.png in Resources */,
 				91BAC6551332794400D3D03E /* LoginController.xib in Resources */,
+				91BAC6C41332B2E300D3D03E /* HourEntryViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -335,6 +347,8 @@
 				91719D4E133258DE006B0033 /* UITableViewCellExtensions.m in Sources */,
 				91719D5513326A0B006B0033 /* NSDateExtensions.m in Sources */,
 				91719D5913326D48006B0033 /* LoginController.m in Sources */,
+				91BAC6C11332B2CA00D3D03E /* HourEntryViewController.m in Sources */,
+				91BAC6C61332BE8D00D3D03E /* saveHours.js in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

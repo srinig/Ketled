@@ -9,7 +9,6 @@
 #import "HoursViewController.h"
 #import "UITableViewCellExtensions.h"
 
-
 @interface HoursViewController ()
 - (BOOL)isDateToday:(NSDate *)aDate;
 - (NSDate *)todayGMT;
@@ -103,7 +102,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    NSNumber *hours = [[account objectForKey:@"hours"] objectAtIndex:indexPath.row];
+    HourEntryViewController *vc = [[HourEntryViewController alloc] initWithAccount:account 
+                                                                             hours:hours];
+    vc.delegate = self;
+    [self presentModalViewController:vc animated:YES];
+    [vc release];
 }
 
 - (BOOL)isDateToday:(NSDate *)aDate {    
@@ -115,6 +119,17 @@
     NSDate *otherDate = [cal dateFromComponents:components];
     return [today isEqualToDate:otherDate];
 }
+
+
+#pragma mark HourEntryDelegate
+
+- (void)hourEntryViewController:(HourEntryViewController *)vc didSelectHours:(float)hours {
+    // TODO save
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+
+#pragma mark Private
 
 - (NSDate *)todayGMT {
     return [[NSDate date] dateByAddingTimeInterval:[[NSTimeZone defaultTimeZone] secondsFromGMT]];
