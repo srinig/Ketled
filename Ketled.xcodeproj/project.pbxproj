@@ -1,0 +1,444 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1D3623260D0F684500981E51 /* DeltekAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* DeltekAppDelegate.m */; };
+		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
+		28C286E10D94DF7D0034E888 /* AccountsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* AccountsViewController.m */; };
+		912453A913318319004B24F4 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 912453A813318319004B24F4 /* MBProgressHUD.m */; };
+		9141F0711332391700D0B6BA /* shadow-reverse.png in Resources */ = {isa = PBXBuildFile; fileRef = 9141F0681332391700D0B6BA /* shadow-reverse.png */; };
+		9141F0721332391700D0B6BA /* shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 9141F0691332391700D0B6BA /* shadow.png */; };
+		9141F0731332391700D0B6BA /* login.js in Sources */ = {isa = PBXBuildFile; fileRef = 9141F06B1332391700D0B6BA /* login.js */; };
+		9141F0741332391700D0B6BA /* queryPage.js in Sources */ = {isa = PBXBuildFile; fileRef = 9141F06C1332391700D0B6BA /* queryPage.js */; };
+		9141F0751332391700D0B6BA /* AccountsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9141F06E1332391700D0B6BA /* AccountsViewController.xib */; };
+		9141F0761332391700D0B6BA /* HoursViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9141F06F1332391700D0B6BA /* HoursViewController.xib */; };
+		9141F0771332391700D0B6BA /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9141F0701332391700D0B6BA /* MainWindow.xib */; };
+		91719D3113324DE6006B0033 /* YAJLiOS.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 91AFAD8113319ABB00D28EAF /* YAJLiOS.framework */; };
+		91719D3413324E05006B0033 /* login.js in Resources */ = {isa = PBXBuildFile; fileRef = 9141F06B1332391700D0B6BA /* login.js */; };
+		91719D3513324E05006B0033 /* queryPage.js in Resources */ = {isa = PBXBuildFile; fileRef = 9141F06C1332391700D0B6BA /* queryPage.js */; };
+		91719D41133252A3006B0033 /* NSNumberExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 91719D40133252A3006B0033 /* NSNumberExtensions.m */; };
+		91719D4313325601006B0033 /* HoursCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91719D4213325601006B0033 /* HoursCell.xib */; };
+		91719D4E133258DE006B0033 /* UITableViewCellExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 91719D4D133258DE006B0033 /* UITableViewCellExtensions.m */; };
+		91719D5013326292006B0033 /* IconSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = 91719D4F13326291006B0033 /* IconSmall.png */; };
+		91719D5213326296006B0033 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 91719D5113326296006B0033 /* Icon.png */; };
+		91719D5513326A0B006B0033 /* NSDateExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 91719D5413326A0A006B0033 /* NSDateExtensions.m */; };
+		91719D5913326D48006B0033 /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91719D5713326D46006B0033 /* LoginController.m */; };
+		91AFAD8213319ABB00D28EAF /* YAJLiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91AFAD8113319ABB00D28EAF /* YAJLiOS.framework */; };
+		91AFAD861331A75C00D28EAF /* HoursViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91AFAD841331A75C00D28EAF /* HoursViewController.m */; };
+		91B724AA1330255800BC8575 /* SynchronousWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B724A91330255800BC8575 /* SynchronousWebView.m */; };
+		91BAC6551332794400D3D03E /* LoginController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91BAC6541332794400D3D03E /* LoginController.xib */; };
+		91C57E9D1326F0EC00578288 /* DeltekService.m in Sources */ = {isa = PBXBuildFile; fileRef = 91C57E9C1326F0EC00578288 /* DeltekService.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		91AFAD7F133199A700D28EAF /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				91719D3113324DE6006B0033 /* YAJLiOS.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1D3623240D0F684500981E51 /* DeltekAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeltekAppDelegate.h; sourceTree = "<group>"; };
+		1D3623250D0F684500981E51 /* DeltekAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeltekAppDelegate.m; sourceTree = "<group>"; };
+		1D6058910D05DD3D006BFB54 /* Ketled.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ketled.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		28A0AAE50D9B0CCF005BE974 /* Ketled_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ketled_Prefix.pch; sourceTree = "<group>"; };
+		28C286DF0D94DF7D0034E888 /* AccountsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountsViewController.h; sourceTree = "<group>"; };
+		28C286E00D94DF7D0034E888 /* AccountsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountsViewController.m; sourceTree = "<group>"; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* Ketled-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Ketled-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		912453A713318319004B24F4 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		912453A813318319004B24F4 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		9141F0681332391700D0B6BA /* shadow-reverse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shadow-reverse.png"; sourceTree = "<group>"; };
+		9141F0691332391700D0B6BA /* shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shadow.png; sourceTree = "<group>"; };
+		9141F06B1332391700D0B6BA /* login.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = login.js; sourceTree = "<group>"; };
+		9141F06C1332391700D0B6BA /* queryPage.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = queryPage.js; sourceTree = "<group>"; };
+		9141F06E1332391700D0B6BA /* AccountsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountsViewController.xib; sourceTree = "<group>"; };
+		9141F06F1332391700D0B6BA /* HoursViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HoursViewController.xib; sourceTree = "<group>"; };
+		9141F0701332391700D0B6BA /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		91719D3F133252A3006B0033 /* NSNumberExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSNumberExtensions.h; sourceTree = "<group>"; };
+		91719D40133252A3006B0033 /* NSNumberExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSNumberExtensions.m; sourceTree = "<group>"; };
+		91719D4213325601006B0033 /* HoursCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HoursCell.xib; sourceTree = "<group>"; };
+		91719D4C133258DE006B0033 /* UITableViewCellExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITableViewCellExtensions.h; sourceTree = "<group>"; };
+		91719D4D133258DE006B0033 /* UITableViewCellExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITableViewCellExtensions.m; sourceTree = "<group>"; };
+		91719D4F13326291006B0033 /* IconSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IconSmall.png; path = ../IconSmall.png; sourceTree = "<group>"; };
+		91719D5113326296006B0033 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
+		91719D5313326A0A006B0033 /* NSDateExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDateExtensions.h; sourceTree = "<group>"; };
+		91719D5413326A0A006B0033 /* NSDateExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDateExtensions.m; sourceTree = "<group>"; };
+		91719D5613326D46006B0033 /* LoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginController.h; sourceTree = "<group>"; };
+		91719D5713326D46006B0033 /* LoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginController.m; sourceTree = "<group>"; };
+		91AFAD8113319ABB00D28EAF /* YAJLiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = YAJLiOS.framework; path = "../../../../Shared/workspace/public/yajl-objc/Project-iOS/build/Framework/YAJLiOS.framework"; sourceTree = "<group>"; };
+		91AFAD831331A75C00D28EAF /* HoursViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HoursViewController.h; sourceTree = "<group>"; };
+		91AFAD841331A75C00D28EAF /* HoursViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HoursViewController.m; sourceTree = "<group>"; };
+		91B724A81330255800BC8575 /* SynchronousWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynchronousWebView.h; sourceTree = "<group>"; };
+		91B724A91330255800BC8575 /* SynchronousWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SynchronousWebView.m; sourceTree = "<group>"; };
+		91BAC6541332794400D3D03E /* LoginController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginController.xib; sourceTree = "<group>"; };
+		91C57E9B1326F0EC00578288 /* DeltekService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeltekService.h; sourceTree = "<group>"; };
+		91C57E9C1326F0EC00578288 /* DeltekService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeltekService.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1D60588F0D05DD3D006BFB54 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				91AFAD8213319ABB00D28EAF /* YAJLiOS.framework in Frameworks */,
+				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
+				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
+				2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				912453AA13318321004B24F4 /* Service */,
+				912453AB1331832D004B24F4 /* UI */,
+				1D3623240D0F684500981E51 /* DeltekAppDelegate.h */,
+				1D3623250D0F684500981E51 /* DeltekAppDelegate.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1D6058910D05DD3D006BFB54 /* Ketled.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
+			isa = PBXGroup;
+			children = (
+				080E96DDFE201D6D7F000001 /* Classes */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = CustomTemplate;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				28A0AAE50D9B0CCF005BE974 /* Ketled_Prefix.pch */,
+				29B97316FDCFA39411CA2CEA /* main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				9141F0671332391700D0B6BA /* images */,
+				9141F06A1332391700D0B6BA /* js */,
+				9141F06D1332391700D0B6BA /* xib */,
+				8D1107310486CEB800E47090 /* Ketled-Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				91AFAD8113319ABB00D28EAF /* YAJLiOS.framework */,
+				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
+				1D30AB110D05D00D00671497 /* Foundation.framework */,
+				2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		912453AA13318321004B24F4 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				91C57E9B1326F0EC00578288 /* DeltekService.h */,
+				91C57E9C1326F0EC00578288 /* DeltekService.m */,
+				91B724A81330255800BC8575 /* SynchronousWebView.h */,
+				91B724A91330255800BC8575 /* SynchronousWebView.m */,
+			);
+			name = Service;
+			sourceTree = "<group>";
+		};
+		912453AB1331832D004B24F4 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				912453AC1331833A004B24F4 /* Controllers */,
+				912453AD13318349004B24F4 /* Utilities */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		912453AC1331833A004B24F4 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				28C286DF0D94DF7D0034E888 /* AccountsViewController.h */,
+				28C286E00D94DF7D0034E888 /* AccountsViewController.m */,
+				91AFAD831331A75C00D28EAF /* HoursViewController.h */,
+				91AFAD841331A75C00D28EAF /* HoursViewController.m */,
+				91719D5613326D46006B0033 /* LoginController.h */,
+				91719D5713326D46006B0033 /* LoginController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		912453AD13318349004B24F4 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				91719D4C133258DE006B0033 /* UITableViewCellExtensions.h */,
+				91719D4D133258DE006B0033 /* UITableViewCellExtensions.m */,
+				912453A713318319004B24F4 /* MBProgressHUD.h */,
+				912453A813318319004B24F4 /* MBProgressHUD.m */,
+				91719D3F133252A3006B0033 /* NSNumberExtensions.h */,
+				91719D40133252A3006B0033 /* NSNumberExtensions.m */,
+				91719D5313326A0A006B0033 /* NSDateExtensions.h */,
+				91719D5413326A0A006B0033 /* NSDateExtensions.m */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+		9141F0671332391700D0B6BA /* images */ = {
+			isa = PBXGroup;
+			children = (
+				91719D5113326296006B0033 /* Icon.png */,
+				91719D4F13326291006B0033 /* IconSmall.png */,
+				9141F0681332391700D0B6BA /* shadow-reverse.png */,
+				9141F0691332391700D0B6BA /* shadow.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		9141F06A1332391700D0B6BA /* js */ = {
+			isa = PBXGroup;
+			children = (
+				9141F06B1332391700D0B6BA /* login.js */,
+				9141F06C1332391700D0B6BA /* queryPage.js */,
+			);
+			path = js;
+			sourceTree = "<group>";
+		};
+		9141F06D1332391700D0B6BA /* xib */ = {
+			isa = PBXGroup;
+			children = (
+				9141F06E1332391700D0B6BA /* AccountsViewController.xib */,
+				9141F06F1332391700D0B6BA /* HoursViewController.xib */,
+				9141F0701332391700D0B6BA /* MainWindow.xib */,
+				91BAC6541332794400D3D03E /* LoginController.xib */,
+				91719D4213325601006B0033 /* HoursCell.xib */,
+			);
+			path = xib;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1D6058900D05DD3D006BFB54 /* Ketled */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Ketled" */;
+			buildPhases = (
+				1D60588D0D05DD3D006BFB54 /* Resources */,
+				1D60588E0D05DD3D006BFB54 /* Sources */,
+				1D60588F0D05DD3D006BFB54 /* Frameworks */,
+				91AFAD7F133199A700D28EAF /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Ketled;
+			productName = Deltek;
+			productReference = 1D6058910D05DD3D006BFB54 /* Ketled.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Ketled" */;
+			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+				en,
+			);
+			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1D6058900D05DD3D006BFB54 /* Ketled */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1D60588D0D05DD3D006BFB54 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				91719D3413324E05006B0033 /* login.js in Resources */,
+				91719D3513324E05006B0033 /* queryPage.js in Resources */,
+				9141F0711332391700D0B6BA /* shadow-reverse.png in Resources */,
+				9141F0721332391700D0B6BA /* shadow.png in Resources */,
+				9141F0751332391700D0B6BA /* AccountsViewController.xib in Resources */,
+				9141F0761332391700D0B6BA /* HoursViewController.xib in Resources */,
+				9141F0771332391700D0B6BA /* MainWindow.xib in Resources */,
+				91719D4313325601006B0033 /* HoursCell.xib in Resources */,
+				91719D5013326292006B0033 /* IconSmall.png in Resources */,
+				91719D5213326296006B0033 /* Icon.png in Resources */,
+				91BAC6551332794400D3D03E /* LoginController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1D60588E0D05DD3D006BFB54 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
+				1D3623260D0F684500981E51 /* DeltekAppDelegate.m in Sources */,
+				28C286E10D94DF7D0034E888 /* AccountsViewController.m in Sources */,
+				91C57E9D1326F0EC00578288 /* DeltekService.m in Sources */,
+				91B724AA1330255800BC8575 /* SynchronousWebView.m in Sources */,
+				912453A913318319004B24F4 /* MBProgressHUD.m in Sources */,
+				91AFAD861331A75C00D28EAF /* HoursViewController.m in Sources */,
+				9141F0731332391700D0B6BA /* login.js in Sources */,
+				9141F0741332391700D0B6BA /* queryPage.js in Sources */,
+				91719D41133252A3006B0033 /* NSNumberExtensions.m in Sources */,
+				91719D4E133258DE006B0033 /* UITableViewCellExtensions.m in Sources */,
+				91719D5513326A0B006B0033 /* NSDateExtensions.m in Sources */,
+				91719D5913326D48006B0033 /* LoginController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1D6058940D05DD3E006BFB54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/../../../../Shared/workspace/public/yajl-objc/Project-iOS/build/Framework\"",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Ketled_Prefix.pch;
+				INFOPLIST_FILE = "Ketled-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
+				PRODUCT_NAME = Ketled;
+			};
+			name = Debug;
+		};
+		1D6058950D05DD3E006BFB54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/../../../../Shared/workspace/public/yajl-objc/Project-iOS/build/Framework\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Ketled_Prefix.pch;
+				INFOPLIST_FILE = "Ketled-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
+				PRODUCT_NAME = Ketled;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				PREBINDING = NO;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PREBINDING = NO;
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Ketled" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1D6058940D05DD3E006BFB54 /* Debug */,
+				1D6058950D05DD3E006BFB54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Ketled" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}
