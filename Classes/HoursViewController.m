@@ -67,14 +67,25 @@
     if (cell == nil) {
         cell = [UITableViewCell tableViewCellFromNib:@"HoursCell" reuseIdentifier:@"HoursCell"];
         tableView.rowHeight = cell.frame.size.height;
+        cell.backgroundView = [[[UIView alloc] init] autorelease];
     }
     
     NSDate *startDate = [range objectAtIndex:0];
     NSDate *cellDate = [startDate dateByAddingTimeInterval:indexPath.row * SECONDS_IN_DAYS];
+    NSTimeZone *timeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];    
     
+    // Darken weekend days
+    NSCalendar *cal = [NSCalendar currentCalendar];
+    [cal setTimeZone:timeZone];
+    NSDateComponents *dayOfWeek = [cal components:NSWeekdayCalendarUnit fromDate:cellDate];
+    if ([dayOfWeek weekday] == 1 || [dayOfWeek weekday] == 7)
+        cell.backgroundView.backgroundColor = [UIColor colorWithWhite:0.94 alpha:1.0];
+    else
+        cell.backgroundView.backgroundColor = [UIColor colorWithWhite:1.0 alpha:1.0];
+
     
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    df.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];    
+    df.timeZone = timeZone;
     [df setDateFormat:@"EEEE"];
     UILabel *weekday = (UILabel *)[cell viewWithTag:1];
     weekday.text = [[df stringFromDate:cellDate] uppercaseString];
@@ -85,9 +96,7 @@
     if ([self isDateToday:cellDate]) {
         day.textColor = self.navigationController.navigationBar.tintColor;
     } else
-        day.textColor = weekday.textColor;
-
-    
+        day.textColor = weekday.textColor;    
     
     [df setDateFormat:@"MMM"];
     UILabel *month = (UILabel *)[cell viewWithTag:3];
