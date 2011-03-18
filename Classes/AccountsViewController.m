@@ -84,7 +84,7 @@
 
         return;
     }  
-    
+
     [self refresh];
 
     //self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showWebView)] autorelease];

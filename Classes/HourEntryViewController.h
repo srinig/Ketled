@@ -20,12 +20,15 @@
     id<HourEntryDelegate> delegate;
     UIPickerView *hourPicker;
     UILabel *accountLabel;
+    UILabel *codeLabel;
     UITextField *hourTextField;
     
     NSArray *pickerHours;
+    NSArray *pickerMinutes;
 }
 @property (nonatomic, retain) IBOutlet UIPickerView *hourPicker;
 @property (nonatomic, retain) IBOutlet UILabel *accountLabel;
+@property (nonatomic, retain) IBOutlet UILabel *codeLabel;
 @property (nonatomic, retain) IBOutlet UITextField *hourTextField;
 
 @property (nonatomic, retain) NSDictionary *account;
