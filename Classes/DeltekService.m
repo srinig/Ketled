@@ -44,7 +44,7 @@
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     syncronousWebView = [[SynchronousWebView alloc] init];
     while (YES) {
-        [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:1]];
+        [[NSRunLoop currentRunLoop] runUntilDate:[NSDate distantFuture]];
     }         
     [pool drain];
 }
