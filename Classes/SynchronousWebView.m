@@ -36,24 +36,6 @@
 }
 
 
-- (void)waitForPageLoad {
-    LOG_BEGIN
-    [self reset];
-
-    while (!finished) {
-        [NSThread sleepForTimeInterval:1];
-    }
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        NSString *title = [webview stringByEvaluatingJavaScriptFromString:@"document.title"];
-        NSLog(@"title = %@", title);
-    });
-    
-    
-    LOG_FINISHED
-}
-
-
 - (BOOL)waitForElement:(NSString *)ident inFrame:(NSString *)frameId {
     __block BOOL exists = NO;
     __block BOOL success = YES;
@@ -69,11 +51,13 @@
             exists = ![response isEqualToString:@""];
         });        
         dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
+        dispatch_release(group);
         
         if (!exists && --tryTimes == 0) {
             break;
             success = NO;
         }
+        
         [NSThread sleepForTimeInterval:1];
     }  
     
@@ -107,7 +91,8 @@
     });
     
     dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
-        
+    dispatch_release(group);
+    
     LOG_FINISHED
     
     return [result autorelease];
