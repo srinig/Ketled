@@ -146,7 +146,9 @@
         hours.font = [UIFont systemFontOfSize:18];
         hours.textColor = [UIColor grayColor];
         hours.backgroundColor = [UIColor clearColor];
+        hours.highlightedTextColor = [UIColor whiteColor];
         hours.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
+        hours.textAlignment = UITextAlignmentRight;
         [cell.contentView addSubview:hours];
         [hours release];
     }
