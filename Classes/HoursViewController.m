@@ -8,6 +8,8 @@
 
 #import "HoursViewController.h"
 #import "UITableViewCellExtensions.h"
+#import "MBProgressHUD.h"
+#import "DeltekService.h"
 
 @interface HoursViewController ()
 - (BOOL)isDateToday:(NSDate *)aDate;
@@ -18,11 +20,12 @@
 
 @synthesize account, range;
 
-- (id)initWithAccount:(NSDictionary *)anAccount dateRange:(NSArray *)aRange {
+- (id)initWithAccount:(NSDictionary *)anAccount accountIndex:(NSUInteger)anAccountIndex dateRange:(NSArray *)aRange {
     self = [super init];
     if (self) {
         self.account = anAccount;
         self.range = aRange;
+        accountIndex = anAccountIndex;
         self.title = [account objectForKey:@"name"];        
     }
     return self;
@@ -123,9 +126,30 @@
 
 #pragma mark HourEntryDelegate
 
-- (void)hourEntryViewController:(HourEntryViewController *)vc didSelectHours:(float)hours {
-    // TODO save
-    [self dismissModalViewControllerAnimated:YES];
+- (void)hourEntryViewController:(HourEntryViewController *)vc didSelectHours:(NSString *)hours {
+    
+    [MBProgressHUD showHUDAddedTo:vc.view animated:YES].labelText = @"Saving";
+
+    int dayIndex = [self.tableView indexPathForSelectedRow].row;
+    
+    [[DeltekService sharedInstance] saveHours:hours accountIndex:accountIndex dayIndex:dayIndex completion:^(BOOL success) {
+       
+        [MBProgressHUD hideHUDForView:vc.view animated:YES];
+        if (success) {
+                        
+            NSMutableDictionary *mAccount = [NSMutableDictionary dictionaryWithDictionary:account];
+            NSMutableArray *mHours = [NSMutableArray arrayWithArray:[mAccount objectForKey:@"hours"]];
+            [mHours replaceObjectAtIndex:dayIndex withObject:[NSNumber numberWithFloat:[hours floatValue]]];
+            [mAccount setObject:mHours forKey:@"hours"];
+
+            self.account = [NSDictionary dictionaryWithDictionary:mAccount];
+            [self.tableView reloadData];
+
+            [self dismissModalViewControllerAnimated:YES];
+        } else {
+            [[[[UIAlertView alloc] initWithTitle:@"Error" message:@"Unable to Save" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease] show];            
+        }
+    }];
 }
 
 

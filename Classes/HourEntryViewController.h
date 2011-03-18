@@ -10,7 +10,7 @@
 
 @class HourEntryViewController;
 @protocol HourEntryDelegate <NSObject>
-- (void)hourEntryViewController:(HourEntryViewController *)vc didSelectHours:(float)hours;
+- (void)hourEntryViewController:(HourEntryViewController *)vc didSelectHours:(NSString *)hours;
 @end
 
 

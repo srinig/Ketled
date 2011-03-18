@@ -50,6 +50,36 @@
 }
 
 
+- (void)saveHours:(NSString *)hours accountIndex:(NSUInteger)accountIndex dayIndex:(NSUInteger)dayIndex completion:(void(^)(BOOL success))completion {
+
+    if ([NSThread currentThread] != workerThread) {        
+		completion = [[completion copy] autorelease];
+        
+        NSInvocation *i = [NSInvocation invocationWithMethodSignature:[self methodSignatureForSelector:_cmd]];
+        [i setSelector:_cmd];
+        [i setTarget:self];
+        [i setArgument:&hours atIndex:2];
+        [i setArgument:&accountIndex atIndex:3];
+        [i setArgument:&dayIndex atIndex:4];
+        [i setArgument:&completion atIndex:5];
+        [i retainArguments];                
+        [i performSelector:@selector(invoke) onThread:workerThread withObject:nil waitUntilDone:NO];
+        return;
+    }
+
+    NSDictionary *input = [NSDictionary dictionaryWithObjectsAndKeys:
+                           hours, @"hours",
+                           [NSString stringWithFormat:@"%u", accountIndex], @"accountIndex", 
+                           [NSString stringWithFormat:@"%u", dayIndex], @"dayIndex", nil];
+    
+    [syncronousWebView resultFromScript:@"saveHours" input:input];
+    BOOL success = [syncronousWebView waitForElement:@"modalFrame" inFrame:@"unitFrame"];    
+    
+    
+    if (completion) 
+        dispatch_async(dispatch_get_main_queue(), ^{ completion(success); });
+}
+
 - (void)chargesWithCompletion:(void(^)(NSDictionary *charges)) block {
     
 	if ([NSThread currentThread] != workerThread) {        

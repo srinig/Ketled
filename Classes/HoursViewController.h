@@ -12,11 +12,12 @@
 @interface HoursViewController : UITableViewController <HourEntryDelegate> {
     NSDictionary *account;
     NSArray *range;
+    NSUInteger accountIndex;
 }
 
 @property (nonatomic, retain) NSDictionary *account;
 @property (nonatomic, retain) NSArray *range;
 
-- (id)initWithAccount:(NSDictionary *)anAccount dateRange:(NSArray *)range;
+- (id)initWithAccount:(NSDictionary *)anAccount accountIndex:(NSUInteger)accountIndex dateRange:(NSArray *)range;
 
 @end

@@ -24,4 +24,6 @@
 @property (nonatomic, retain) IBOutlet UIView *headerView;
 @property (nonatomic, retain) IBOutlet UIProgressView *progress;
 
+
+- (IBAction)refresh;
 @end

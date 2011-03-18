@@ -84,7 +84,7 @@
 }
 
 - (IBAction)done:(id)sender {
-    [delegate hourEntryViewController:self didSelectHours:[hourTextField.text floatValue]];
+    [delegate hourEntryViewController:self didSelectHours:hourTextField.text];
 }
 
 - (IBAction)cancel:(id)sender {

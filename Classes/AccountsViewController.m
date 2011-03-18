@@ -25,11 +25,13 @@
 #pragma mark -
 #pragma mark View lifecycle
 
-- (void)refresh {
-    [self dismissModalViewControllerAnimated:YES];
+- (IBAction)refresh {
+    if (self.modalViewController)
+        [self dismissModalViewControllerAnimated:YES];
     
     [self.progress setProgress:0];
     
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES].labelText = @"Loading";
     
 	[[DeltekService sharedInstance] chargesWithCompletion:^(NSDictionary *c){
@@ -168,7 +170,7 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {    
-    HoursViewController *hvc = [[HoursViewController alloc] initWithAccount:[accounts objectAtIndex:indexPath.row] dateRange:[charges objectForKey:@"dateRange"]];
+    HoursViewController *hvc = [[HoursViewController alloc] initWithAccount:[accounts objectAtIndex:indexPath.row] accountIndex:indexPath.row dateRange:[charges objectForKey:@"dateRange"]];
     [self.navigationController pushViewController:hvc animated:YES];
     [hvc release];
 }

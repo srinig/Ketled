@@ -16,11 +16,10 @@
 		912453A913318319004B24F4 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 912453A813318319004B24F4 /* MBProgressHUD.m */; };
 		9141F0711332391700D0B6BA /* shadow-reverse.png in Resources */ = {isa = PBXBuildFile; fileRef = 9141F0681332391700D0B6BA /* shadow-reverse.png */; };
 		9141F0721332391700D0B6BA /* shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 9141F0691332391700D0B6BA /* shadow.png */; };
-		9141F0731332391700D0B6BA /* login.js in Sources */ = {isa = PBXBuildFile; fileRef = 9141F06B1332391700D0B6BA /* login.js */; };
-		9141F0741332391700D0B6BA /* queryPage.js in Sources */ = {isa = PBXBuildFile; fileRef = 9141F06C1332391700D0B6BA /* queryPage.js */; };
 		9141F0751332391700D0B6BA /* AccountsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9141F06E1332391700D0B6BA /* AccountsViewController.xib */; };
 		9141F0761332391700D0B6BA /* HoursViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9141F06F1332391700D0B6BA /* HoursViewController.xib */; };
 		9141F0771332391700D0B6BA /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9141F0701332391700D0B6BA /* MainWindow.xib */; };
+		9141F09A1332D58100D0B6BA /* saveHours.js in Resources */ = {isa = PBXBuildFile; fileRef = 91BAC6C51332BE8D00D3D03E /* saveHours.js */; };
 		91719D3113324DE6006B0033 /* YAJLiOS.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 91AFAD8113319ABB00D28EAF /* YAJLiOS.framework */; };
 		91719D3413324E05006B0033 /* login.js in Resources */ = {isa = PBXBuildFile; fileRef = 9141F06B1332391700D0B6BA /* login.js */; };
 		91719D3513324E05006B0033 /* queryPage.js in Resources */ = {isa = PBXBuildFile; fileRef = 9141F06C1332391700D0B6BA /* queryPage.js */; };
@@ -37,7 +36,6 @@
 		91BAC6551332794400D3D03E /* LoginController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91BAC6541332794400D3D03E /* LoginController.xib */; };
 		91BAC6C11332B2CA00D3D03E /* HourEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91BAC6BF1332B2CA00D3D03E /* HourEntryViewController.m */; };
 		91BAC6C41332B2E300D3D03E /* HourEntryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91BAC6C31332B2E300D3D03E /* HourEntryViewController.xib */; };
-		91BAC6C61332BE8D00D3D03E /* saveHours.js in Sources */ = {isa = PBXBuildFile; fileRef = 91BAC6C51332BE8D00D3D03E /* saveHours.js */; };
 		91C57E9D1326F0EC00578288 /* DeltekService.m in Sources */ = {isa = PBXBuildFile; fileRef = 91C57E9C1326F0EC00578288 /* DeltekService.m */; };
 /* End PBXBuildFile section */
 
@@ -312,6 +310,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9141F09A1332D58100D0B6BA /* saveHours.js in Resources */,
 				91719D3413324E05006B0033 /* login.js in Resources */,
 				91719D3513324E05006B0033 /* queryPage.js in Resources */,
 				9141F0711332391700D0B6BA /* shadow-reverse.png in Resources */,
@@ -341,14 +340,11 @@
 				91B724AA1330255800BC8575 /* SynchronousWebView.m in Sources */,
 				912453A913318319004B24F4 /* MBProgressHUD.m in Sources */,
 				91AFAD861331A75C00D28EAF /* HoursViewController.m in Sources */,
-				9141F0731332391700D0B6BA /* login.js in Sources */,
-				9141F0741332391700D0B6BA /* queryPage.js in Sources */,
 				91719D41133252A3006B0033 /* NSNumberExtensions.m in Sources */,
 				91719D4E133258DE006B0033 /* UITableViewCellExtensions.m in Sources */,
 				91719D5513326A0B006B0033 /* NSDateExtensions.m in Sources */,
 				91719D5913326D48006B0033 /* LoginController.m in Sources */,
 				91BAC6C11332B2CA00D3D03E /* HourEntryViewController.m in Sources */,
-				91BAC6C61332BE8D00D3D03E /* saveHours.js in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

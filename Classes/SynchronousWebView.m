@@ -60,7 +60,7 @@
     __block BOOL exists = NO;
     __block BOOL success = YES;
 
-    int tryTimes = 20;
+    int tryTimes = 30;
     while (!exists) {        
         dispatch_group_t group = dispatch_group_create();    
         dispatch_group_async(group, dispatch_get_main_queue(), ^{        
