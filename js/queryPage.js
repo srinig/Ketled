@@ -17,7 +17,7 @@ for (var i = 0; i < a.length; i++) {
     
     do {
         hourEl = doc.getElementById('hrs'+i+'_'+day);
-        if (hourEl) {
+        if (hourEl && hourEl.parentNode.style.display != 'none') {
             num = +hourEl.innerHTML;
             hours.push(num);
             totalhours += num;
@@ -25,7 +25,7 @@ for (var i = 0; i < a.length; i++) {
             if (i == 0 && hourEl.style.backgroundColor == '' && hourEl.parentNode.style.display != 'none') {
                 required += 8;
             }
-            if (i == 0 && hourEl.parentNode.style.display != 'none')
+            if (i == 0)
                 daysInPeriod++;
         }
         day++;
