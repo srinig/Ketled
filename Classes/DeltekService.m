@@ -92,6 +92,10 @@
     [syncronousWebView load:[cred objectForKey:@"url"]];
     [syncronousWebView resultFromScript:@"login" input:cred];
     
+    
+    [syncronousWebView waitForElement:@"menu_1" inFrame:@"navigationFrame"];
+    [syncronousWebView resultFromScript:@"navigateTimesheet" input:nil];
+        
     if ([syncronousWebView waitForElement:@"udtColumn0" inFrame:@"unitFrame"]) {
         NSString *accountsJson = [syncronousWebView resultFromScript:@"queryPage" input:nil];        
         NSDictionary *accounts = [accountsJson yajl_JSON];

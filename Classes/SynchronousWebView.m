@@ -25,7 +25,6 @@
     [self reset];
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        NSAssert([NSThread isMainThread], @"not on main thread");
         [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
     });
     
@@ -46,7 +45,6 @@
     }
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        NSAssert([NSThread isMainThread], @"not on main thread");
         NSString *title = [webview stringByEvaluatingJavaScriptFromString:@"document.title"];
         NSLog(@"title = %@", title);
     });
@@ -72,7 +70,7 @@
         });        
         dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
         
-        if (--tryTimes == 0) {
+        if (!exists && --tryTimes == 0) {
             break;
             success = NO;
         }

@@ -29,6 +29,7 @@
 		91719D5213326296006B0033 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 91719D5113326296006B0033 /* Icon.png */; };
 		91719D5513326A0B006B0033 /* NSDateExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 91719D5413326A0A006B0033 /* NSDateExtensions.m */; };
 		91719D5913326D48006B0033 /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91719D5713326D46006B0033 /* LoginController.m */; };
+		91A18BAA1333046400EB878B /* navigateTimesheet.js in Resources */ = {isa = PBXBuildFile; fileRef = 91A18BA91333046400EB878B /* navigateTimesheet.js */; };
 		91A4B9EB1332FBBD007C06CA /* YAJLiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A4B9EA1332FBBD007C06CA /* YAJLiOS.framework */; };
 		91A4B9EC1332FBC8007C06CA /* YAJLiOS.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 91A4B9EA1332FBBD007C06CA /* YAJLiOS.framework */; };
 		91AFAD861331A75C00D28EAF /* HoursViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91AFAD841331A75C00D28EAF /* HoursViewController.m */; };
@@ -84,6 +85,7 @@
 		91719D5413326A0A006B0033 /* NSDateExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDateExtensions.m; sourceTree = "<group>"; };
 		91719D5613326D46006B0033 /* LoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginController.h; sourceTree = "<group>"; };
 		91719D5713326D46006B0033 /* LoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginController.m; sourceTree = "<group>"; };
+		91A18BA91333046400EB878B /* navigateTimesheet.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = navigateTimesheet.js; sourceTree = "<group>"; };
 		91A4B9EA1332FBBD007C06CA /* YAJLiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = YAJLiOS.framework; sourceTree = "<group>"; };
 		91AFAD831331A75C00D28EAF /* HoursViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HoursViewController.h; sourceTree = "<group>"; };
 		91AFAD841331A75C00D28EAF /* HoursViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HoursViewController.m; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 				9141F06B1332391700D0B6BA /* login.js */,
 				9141F06C1332391700D0B6BA /* queryPage.js */,
 				91BAC6C51332BE8D00D3D03E /* saveHours.js */,
+				91A18BA91333046400EB878B /* navigateTimesheet.js */,
 			);
 			path = js;
 			sourceTree = "<group>";
@@ -323,6 +326,7 @@
 				91719D5213326296006B0033 /* Icon.png in Resources */,
 				91BAC6551332794400D3D03E /* LoginController.xib in Resources */,
 				91BAC6C41332B2E300D3D03E /* HourEntryViewController.xib in Resources */,
+				91A18BAA1333046400EB878B /* navigateTimesheet.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
