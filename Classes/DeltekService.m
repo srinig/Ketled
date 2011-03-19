@@ -106,6 +106,8 @@
     
 	if ([NSThread currentThread] != workerThread) {        
 		block = [[block copy] autorelease];
+        // reset webview
+        syncronousWebView.webview = nil;
         [self performSelector:_cmd onThread:workerThread withObject:block waitUntilDone:NO];
         return;
     }

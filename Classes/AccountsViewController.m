@@ -85,7 +85,8 @@
         return;
     }  
 
-    [self refresh];
+    if (!self.charges)
+        [self refresh];
 
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"debug_enabled"]) {
         self.navigationItem.rightBarButtonItem = 
@@ -99,8 +100,10 @@
 
 - (void)toggleWebview {
     UIWebView *webview = (UIWebView *)[self.view.window viewWithTag:9999];
+    
+    
     if (webview) {
-        webview.hidden = !webview.hidden;
+        [webview removeFromSuperview];
     } else {
         webview = [[DeltekService sharedInstance] valueForKeyPath:@"syncronousWebView.webview"];
         
