@@ -18,5 +18,5 @@
 + (id)sharedInstance;
 
 - (void)chargesWithCompletion:(void(^)(NSDictionary *charges)) block;
-- (void)saveHours:(NSString *)hours accountIndex:(NSUInteger)accountIndex dayIndex:(NSUInteger)dayIndex completion:(void(^)(BOOL success))completion;
+- (void)saveHours:(NSString *)hours accountIndex:(NSUInteger)accountIndex dayIndex:(NSUInteger)dayIndex completion:(void(^)(BOOL success, NSString *errorMessage))completion;
 @end

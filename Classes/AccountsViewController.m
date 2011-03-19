@@ -87,26 +87,29 @@
 
     [self refresh];
 
-    //self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showWebView)] autorelease];
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"debug_enabled"]) {
+        self.navigationItem.rightBarButtonItem = 
+        [[[UIBarButtonItem alloc] initWithTitle:@"Debug" 
+                                          style:UIBarButtonItemStyleBordered 
+                                         target:self 
+                                         action:@selector(toggleWebview)] autorelease];
+    }
 }
 
-/*
-- (void)showWebView {
-    UIViewController *vc = [[UIViewController alloc] init];
-    vc.view = [[DeltekService sharedInstance] valueForKeyPath:@"syncronousWebView.webview"];
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];                                   
-    [vc release];
 
-    vc.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(hideWebView)] autorelease];
-    
-    [self presentModalViewController:nav animated:YES];
-    [nav release];
+- (void)toggleWebview {
+    UIWebView *webview = (UIWebView *)[self.view.window viewWithTag:9999];
+    if (webview) {
+        webview.hidden = !webview.hidden;
+    } else {
+        webview = [[DeltekService sharedInstance] valueForKeyPath:@"syncronousWebView.webview"];
+        
+        webview.tag = 9999;
+        webview.frame = CGRectOffset(CGRectInset(self.view.window.bounds, 0, 150), 0, 150);
+        [self.view.window addSubview:webview];
+    }
 }
 
-- (void)hideWebView {
-    [self dismissModalViewControllerAnimated:YES];
-}
-*/
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {

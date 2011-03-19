@@ -11,6 +11,8 @@
 #import "NSNumberExtensions.h"
 #import <YAJLiOS/YAJL.h>
 
+#define RETRY_COUNT 4
+
 @implementation DeltekService
 
 + (id)sharedInstance {
@@ -50,7 +52,7 @@
 }
 
 
-- (void)saveHours:(NSString *)hours accountIndex:(NSUInteger)accountIndex dayIndex:(NSUInteger)dayIndex completion:(void(^)(BOOL success))completion {
+- (void)saveHours:(NSString *)hours accountIndex:(NSUInteger)accountIndex dayIndex:(NSUInteger)dayIndex completion:(void(^)(BOOL success, NSString *errorMessage))completion {
 
     if ([NSThread currentThread] != workerThread) {        
 		completion = [[completion copy] autorelease];
@@ -74,10 +76,30 @@
     
     [syncronousWebView resultFromScript:@"saveHours" input:input];
     BOOL success = [syncronousWebView waitForElement:@"modalFrame" inFrame:@"unitFrame"];    
-    
+
+    NSString *errorMessage = nil;
+    if (success) {
+        // Check for errors popup
+                
+        NSString *successJson;
+        int try = -10;
+        do {
+            successJson = [syncronousWebView resultFromScript:@"saveResult" input:nil];
+            [NSThread sleepForTimeInterval:0.5];
+        } while ([successJson length] == 0 && ++try <= RETRY_COUNT);
+        
+        NSDictionary *resultDict = [successJson yajl_JSON];
+        success = resultDict != nil && [[resultDict objectForKey:@"success"] boolValue];
+        
+        if (!success) {
+            errorMessage = [resultDict objectForKey:@"message"];
+            if (!errorMessage)
+                errorMessage = @"Unknown Error Occured";            
+        }
+    }
     
     if (completion) 
-        dispatch_async(dispatch_get_main_queue(), ^{ completion(success); });
+        dispatch_async(dispatch_get_main_queue(), ^{ completion(success, errorMessage); });
 }
 
 - (void)chargesWithCompletion:(void(^)(NSDictionary *charges)) block {
@@ -97,7 +119,15 @@
     [syncronousWebView resultFromScript:@"navigateTimesheet" input:nil];
         
     if ([syncronousWebView waitForElement:@"udtColumn0" inFrame:@"unitFrame"]) {
-        NSString *accountsJson = [syncronousWebView resultFromScript:@"queryPage" input:nil];        
+ 
+        NSString *accountsJson;
+        int try = 1;
+        do {
+            accountsJson = [syncronousWebView resultFromScript:@"queryPage" input:nil];
+            [NSThread sleepForTimeInterval:1.0];
+        } while ([accountsJson length] == 0 && ++try <= RETRY_COUNT);
+        
+        
         NSDictionary *accounts = [accountsJson yajl_JSON];
 
         NSDate *d1 = [[[accounts objectForKey:@"dateRange"] objectAtIndex:0] dateFromMillisecondsGMT];

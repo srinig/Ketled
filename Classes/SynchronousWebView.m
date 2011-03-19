@@ -36,19 +36,20 @@
 }
 
 
-- (BOOL)waitForElement:(NSString *)ident inFrame:(NSString *)frameId {
+- (BOOL)waitForElement:(NSString *)ident fromWindowPath:(NSString *)windowPath {
+    
     __block BOOL exists = NO;
     __block BOOL success = YES;
-
+    
     int tryTimes = 30;
     while (!exists) {        
         dispatch_group_t group = dispatch_group_create();    
         dispatch_group_async(group, dispatch_get_main_queue(), ^{        
-            NSString *js = [NSString stringWithFormat:@"var el = window.frames['%@'].window.document.getElementById('%@'); el.tagName", frameId, ident];
+            NSString *js = [NSString stringWithFormat:@"%@.document.getElementById('%@').tagName", windowPath, ident];
             
             id response = [webview stringByEvaluatingJavaScriptFromString:js];
-                    
-            exists = ![response isEqualToString:@""];
+            
+            exists = response != nil && ![response isEqualToString:@""];
         });        
         dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
         dispatch_release(group);
@@ -62,6 +63,11 @@
     }  
     
     return success;
+}
+
+- (BOOL)waitForElement:(NSString *)ident inFrame:(NSString *)frameId {
+    return [self waitForElement:ident 
+                 fromWindowPath:[NSString stringWithFormat:@"window.frames['%@'].window", frameId]];
 }
 
 - (id)resultFromScript:(NSString *)scriptName input:(NSDictionary *)input {
@@ -79,15 +85,21 @@
         s = [s stringByReplacingOccurrencesOfString:@"$" withString:@"document.getElementById"];				 
 
         // Wrap in try catch
-        s = [NSString stringWithFormat:@"try { %@ } catch (e) { alert (e.message); }", s];
+        s = [NSString stringWithFormat:@"_ketledLastError = ''; try { %@ } catch (e) { _ketledLastError = e.message; }", s];
         
         if (input) {
             for (NSString *inputKey in [input allKeys]) {
-                s = [s stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"#{%@}", inputKey] withString:[input valueForKey:inputKey]];																											   
+                s = [s stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"#{%@}", inputKey] withString:[input valueForKey:inputKey]];										   
             }
         }
         
         result = [[webview stringByEvaluatingJavaScriptFromString:s] retain];
+        
+        NSString *errorMessage = [webview stringByEvaluatingJavaScriptFromString:@"_ketledLastError"];
+        if (![errorMessage isEqualToString:@""]) {
+            NSLog(@"%@", errorMessage);
+            result = @"";
+        }
     });
     
     dispatch_group_wait(group, DISPATCH_TIME_FOREVER);

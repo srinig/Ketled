@@ -141,9 +141,18 @@
 
     int dayIndex = [self.tableView indexPathForSelectedRow].row;
     
-    [[DeltekService sharedInstance] saveHours:hours accountIndex:accountIndex dayIndex:dayIndex completion:^(BOOL success) {
+    [[DeltekService sharedInstance] saveHours:hours accountIndex:accountIndex dayIndex:dayIndex completion:^(BOOL success, NSString *errorMessage) {
        
         [MBProgressHUD hideHUDForView:vc.view animated:YES];
+
+        if (errorMessage) {
+            [[[[UIAlertView alloc] initWithTitle:(success ? @"Warning" : @"Error") 
+                                         message:errorMessage 
+                                        delegate:nil 
+                               cancelButtonTitle:@"OK" 
+                               otherButtonTitles:nil] autorelease] show];            
+        }
+        
         if (success) {
                         
             NSMutableDictionary *mAccount = [NSMutableDictionary dictionaryWithDictionary:account];
@@ -155,8 +164,6 @@
             [self.tableView reloadData];
 
             [self dismissModalViewControllerAnimated:YES];
-        } else {
-            [[[[UIAlertView alloc] initWithTitle:@"Error" message:@"Unable to Save" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease] show];            
         }
     }];
 }

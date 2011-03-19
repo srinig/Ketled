@@ -29,6 +29,8 @@
 		91719D5213326296006B0033 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 91719D5113326296006B0033 /* Icon.png */; };
 		91719D5513326A0B006B0033 /* NSDateExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 91719D5413326A0A006B0033 /* NSDateExtensions.m */; };
 		91719D5913326D48006B0033 /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91719D5713326D46006B0033 /* LoginController.m */; };
+		917D85771335454000DD5E8D /* saveResult.js in Resources */ = {isa = PBXBuildFile; fileRef = 917D8575133539A900DD5E8D /* saveResult.js */; };
+		917D8579133549A900DD5E8D /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 917D8578133549A800DD5E8D /* Settings.bundle */; };
 		91A18BAA1333046400EB878B /* navigateTimesheet.js in Resources */ = {isa = PBXBuildFile; fileRef = 91A18BA91333046400EB878B /* navigateTimesheet.js */; };
 		91A4B9EB1332FBBD007C06CA /* YAJLiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A4B9EA1332FBBD007C06CA /* YAJLiOS.framework */; };
 		91A4B9EC1332FBC8007C06CA /* YAJLiOS.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 91A4B9EA1332FBBD007C06CA /* YAJLiOS.framework */; };
@@ -85,6 +87,8 @@
 		91719D5413326A0A006B0033 /* NSDateExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDateExtensions.m; sourceTree = "<group>"; };
 		91719D5613326D46006B0033 /* LoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginController.h; sourceTree = "<group>"; };
 		91719D5713326D46006B0033 /* LoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginController.m; sourceTree = "<group>"; };
+		917D8575133539A900DD5E8D /* saveResult.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = saveResult.js; sourceTree = "<group>"; };
+		917D8578133549A800DD5E8D /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		91A18BA91333046400EB878B /* navigateTimesheet.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = navigateTimesheet.js; sourceTree = "<group>"; };
 		91A4B9EA1332FBBD007C06CA /* YAJLiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = YAJLiOS.framework; sourceTree = "<group>"; };
 		91AFAD831331A75C00D28EAF /* HoursViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HoursViewController.h; sourceTree = "<group>"; };
@@ -162,6 +166,7 @@
 				9141F06A1332391700D0B6BA /* js */,
 				9141F06D1332391700D0B6BA /* xib */,
 				8D1107310486CEB800E47090 /* Ketled-Info.plist */,
+				917D8578133549A800DD5E8D /* Settings.bundle */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -245,6 +250,7 @@
 				9141F06C1332391700D0B6BA /* queryPage.js */,
 				91BAC6C51332BE8D00D3D03E /* saveHours.js */,
 				91A18BA91333046400EB878B /* navigateTimesheet.js */,
+				917D8575133539A900DD5E8D /* saveResult.js */,
 			);
 			path = js;
 			sourceTree = "<group>";
@@ -326,7 +332,9 @@
 				91719D5213326296006B0033 /* Icon.png in Resources */,
 				91BAC6551332794400D3D03E /* LoginController.xib in Resources */,
 				91BAC6C41332B2E300D3D03E /* HourEntryViewController.xib in Resources */,
+				917D85771335454000DD5E8D /* saveResult.js in Resources */,
 				91A18BAA1333046400EB878B /* navigateTimesheet.js in Resources */,
+				917D8579133549A900DD5E8D /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

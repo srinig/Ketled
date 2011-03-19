@@ -22,5 +22,7 @@
 
 - (void)load:(NSString *)url;
 - (id)resultFromScript:(NSString *)scriptName input:(NSDictionary *)input;
+
+- (BOOL)waitForElement:(NSString *)ident fromWindowPath:(NSString *)windowPath;
 - (BOOL)waitForElement:(NSString *)ident inFrame:(NSString *)frameId;
 @end
