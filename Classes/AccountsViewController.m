@@ -60,8 +60,8 @@
             totalHoursLabel.text = [NSString stringWithFormat:@"%@ / %@ hours required", [c objectForKey:@"total"], [c objectForKey:@"required"]];
         }
         
-        self.tableView.tableFooterView = footerView;
         self.tableView.tableHeaderView = headerView;                    
+        self.tableView.tableFooterView = footerView;
 	}];
 }
 

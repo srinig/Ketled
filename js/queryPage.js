@@ -58,9 +58,14 @@ dateRange = [
     startDate.getTime() + (daysInPeriod-1) * 86400000
 ];
 
-JSON.stringify({
-               dateRange: dateRange,
-               accounts: accounts,
-               total: cumm_total,
-               required: required
-               });
+result = accounts.length == 0 ? 
+    '' : 
+    JSON.stringify({
+       dateRange: dateRange,
+       accounts: accounts,
+       total: cumm_total,
+       required: required
+    });
+
+
+result;

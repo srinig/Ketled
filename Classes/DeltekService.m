@@ -82,11 +82,11 @@
         // Check for errors popup
                 
         NSString *successJson;
-        int try = -10;
+        int try = 1;
         do {
             successJson = [syncronousWebView resultFromScript:@"saveResult" input:nil];
-            [NSThread sleepForTimeInterval:0.5];
-        } while ([successJson length] == 0 && ++try <= RETRY_COUNT);
+            [NSThread sleepForTimeInterval:1.0];
+        } while ([successJson length] == 0 && ++try <= 30);
         
         NSDictionary *resultDict = [successJson yajl_JSON];
         success = resultDict != nil && [[resultDict objectForKey:@"success"] boolValue];
@@ -120,8 +120,7 @@
     [syncronousWebView waitForElement:@"menu_1" inFrame:@"navigationFrame"];
     [syncronousWebView resultFromScript:@"navigateTimesheet" input:nil];
         
-    if ([syncronousWebView waitForElement:@"udtColumn0" inFrame:@"unitFrame"]) {
- 
+    if ([syncronousWebView waitForElement:@"udt0_0" inFrame:@"unitFrame"]) {        
         NSString *accountsJson;
         int try = 1;
         do {
