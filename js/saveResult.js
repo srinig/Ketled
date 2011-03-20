@@ -7,7 +7,7 @@ errorWarningForm = fDoc.getElementById('saveValidationForm');
 warningMessage = ''
 errorMessage = ''
 success = false;
-alert(msgTable && msgTable.innerText);
+
 if (msgTable && msgTable.innerText.indexOf('Timesheet Saved') >= 0) {
     success = true;
 } else if (errorWarningForm) {
