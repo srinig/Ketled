@@ -198,7 +198,6 @@
         
         UIFont *font = [UIFont systemFontOfSize:18];
         CGSize sizeToFit = [@"00.00" sizeWithFont:font];
-        NSLog(@"%@", cell.accessoryView);
         UILabel *hours = [[UILabel alloc] initWithFrame:CGRectMake(cell.frame.size.width - 30 - sizeToFit.width, 0, sizeToFit.width, tableView.rowHeight)];
         hours.tag = HoursTag;
         hours.font = font;
