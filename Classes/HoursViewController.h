@@ -9,15 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "HourEntryViewController.h"
 
+@class Account;
+
 @interface HoursViewController : UITableViewController <HourEntryDelegate> {
-    NSDictionary *account;
+    Account *account;
     NSArray *range;
     NSUInteger accountIndex;
 }
 
-@property (nonatomic, retain) NSDictionary *account;
+@property (nonatomic, retain) Account *account;
 @property (nonatomic, retain) NSArray *range;
 
-- (id)initWithAccount:(NSDictionary *)anAccount accountIndex:(NSUInteger)accountIndex dateRange:(NSArray *)range;
+- (id)initWithAccount:(Account *)anAccount accountIndex:(NSUInteger)accountIndex dateRange:(NSArray *)range;
 
 @end

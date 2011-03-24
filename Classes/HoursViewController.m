@@ -10,6 +10,7 @@
 #import "UITableViewCellExtensions.h"
 #import "MBProgressHUD.h"
 #import "DeltekService.h"
+#import "Account.h"
 
 @interface HoursViewController ()
 - (BOOL)isDateToday:(NSDate *)aDate;
@@ -20,13 +21,13 @@
 
 @synthesize account, range;
 
-- (id)initWithAccount:(NSDictionary *)anAccount accountIndex:(NSUInteger)anAccountIndex dateRange:(NSArray *)aRange {
+- (id)initWithAccount:(Account *)anAccount accountIndex:(NSUInteger)anAccountIndex dateRange:(NSArray *)aRange {
     self = [super init];
     if (self) {
         self.account = anAccount;
         self.range = aRange;
         accountIndex = anAccountIndex;
-        self.title = [account objectForKey:@"name"];        
+        self.title = account.name;
     }
     return self;
 }
@@ -40,9 +41,15 @@
     self.tableView.rowHeight = 63.0;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self.tableView reloadData];
+}
+
 - (void)viewDidAppear:(BOOL)animated {
-    
-    
+    [super viewDidAppear:animated];
+        
     int days = [[self todayGMT] timeIntervalSinceDate:[range objectAtIndex:0]] / SECONDS_IN_DAYS;
     
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:days inSection:0];
@@ -56,7 +63,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[account objectForKey:@"hours"] count];
+    return [account.hours count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -104,7 +111,7 @@
     [df release];
     
     UILabel *hours = (UILabel *)[cell viewWithTag:4];    
-    hours.text = [[[account objectForKey:@"hours"] objectAtIndex:indexPath.row] stringValue];
+    hours.text = [[account.hours objectAtIndex:indexPath.row] stringValue];
     
     return cell;
 }
@@ -114,7 +121,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSNumber *hours = [[account objectForKey:@"hours"] objectAtIndex:indexPath.row];
+    NSNumber *hours = [account.hours objectAtIndex:indexPath.row];
     HourEntryViewController *vc = [[HourEntryViewController alloc] initWithAccount:account 
                                                                              hours:hours];
     vc.delegate = self;
@@ -141,31 +148,31 @@
 
     int dayIndex = [self.tableView indexPathForSelectedRow].row;
     
-    [[DeltekService sharedInstance] saveHours:hours accountIndex:accountIndex dayIndex:dayIndex completion:^(BOOL success, NSString *errorMessage) {
-       
-        [MBProgressHUD hideHUDForView:vc.view animated:YES];
-
-        if (errorMessage) {
-            [[[[UIAlertView alloc] initWithTitle:(success ? @"Warning" : @"Error") 
-                                         message:errorMessage 
-                                        delegate:nil 
-                               cancelButtonTitle:@"OK" 
-                               otherButtonTitles:nil] autorelease] show];            
-        }
-        
-        if (success) {
-                        
-            NSMutableDictionary *mAccount = [NSMutableDictionary dictionaryWithDictionary:account];
-            NSMutableArray *mHours = [NSMutableArray arrayWithArray:[mAccount objectForKey:@"hours"]];
-            [mHours replaceObjectAtIndex:dayIndex withObject:[NSNumber numberWithFloat:[hours floatValue]]];
-            [mAccount setObject:mHours forKey:@"hours"];
-
-            self.account = [NSDictionary dictionaryWithDictionary:mAccount];
-            [self.tableView reloadData];
-
-            [self dismissModalViewControllerAnimated:YES];
-        }
-    }];
+    [[DeltekService sharedInstance] saveHours:hours 
+                                 accountIndex:accountIndex 
+                                     dayIndex:dayIndex 
+                                   completion:^(BOOL success, NSString *errorMessage) {
+                                       
+                                       [MBProgressHUD hideHUDForView:vc.view animated:YES];
+                                       
+                                       if (errorMessage) {
+                                           [[[[UIAlertView alloc] initWithTitle:(success ? @"Warning" : @"Error") 
+                                                                        message:errorMessage 
+                                                                       delegate:nil 
+                                                              cancelButtonTitle:@"OK" 
+                                                              otherButtonTitles:nil] autorelease] show];            
+                                       }
+                                       
+                                       if (success) {
+                                           
+                                           NSMutableArray *mHours = [NSMutableArray arrayWithArray:account.hours];
+                                           [mHours replaceObjectAtIndex:dayIndex 
+                                                             withObject:[NSNumber numberWithFloat:[hours floatValue]]];
+                                           account.hours = mHours;            
+                                           
+                                           [self dismissModalViewControllerAnimated:YES];
+                                       }
+                                   }];
 }
 
 

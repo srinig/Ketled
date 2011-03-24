@@ -8,14 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@class HourEntryViewController;
+@class HourEntryViewController, Account;
 @protocol HourEntryDelegate <NSObject>
 - (void)hourEntryViewController:(HourEntryViewController *)vc didSelectHours:(NSString *)hours;
 @end
 
 
 @interface HourEntryViewController : UIViewController<UIPickerViewDataSource> {
-    NSDictionary *account;
+    Account *account;
     NSNumber *hours;
     id<HourEntryDelegate> delegate;
     UIPickerView *hourPicker;
@@ -31,12 +31,12 @@
 @property (nonatomic, retain) IBOutlet UILabel *codeLabel;
 @property (nonatomic, retain) IBOutlet UITextField *hourTextField;
 
-@property (nonatomic, retain) NSDictionary *account;
+@property (nonatomic, retain) Account *account;
 @property (nonatomic, retain) NSNumber *hours;
 
 @property (nonatomic, assign) id<HourEntryDelegate> delegate;
 
-- (id)initWithAccount:(NSDictionary *)anAccount hours:(NSNumber *)aHours;
+- (id)initWithAccount:(Account *)anAccount hours:(NSNumber *)aHours;
 
 - (IBAction)done:(id)sender;
 - (IBAction)cancel:(id)sender;

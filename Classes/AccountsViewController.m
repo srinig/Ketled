@@ -11,16 +11,45 @@
 #import "MBProgressHUD.h"
 #import "HoursViewController.h"
 #import "LoginController.h"
-#import <YAJLiOS/YAJL.h>
+#import "AccountRequest.h"
+#import "Account.h"
 
 @implementation AccountsViewController
 
-@synthesize accounts;
-@synthesize charges;
+@synthesize accountRequest;
 @synthesize footerView;
+@synthesize totalDaysLabel;
 @synthesize totalHoursLabel;
 @synthesize headerView;
-@synthesize progress;
+@synthesize ptoLabel;
+@synthesize holidayLabel;
+@synthesize hoursProgress;
+@synthesize daysProgress;
+
+- (void)commonInit {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(timeoutNotification:) name:REFRESH_NEEDED object:nil];    
+}
+
+- (id)initWithCoder:(NSCoder *)coder {
+    self = [super initWithCoder:coder];
+    if (self) {
+        [self commonInit];
+    }
+    return self;
+}
+
+- (id)initWithStyle:(UITableViewStyle)style {
+    self = [super initWithStyle:style];
+    if (self) {
+        [self commonInit];
+    }
+    return self;
+}
+
+- (void)timeoutNotification:(NSNotification *)n {
+    [self.navigationController popToViewController:self animated:YES];
+    [self refresh];
+}
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -28,38 +57,44 @@
 - (IBAction)refresh {
     if (self.modalViewController)
         [self dismissModalViewControllerAnimated:YES];
-    
-    [self.progress setProgress:0];
+            
+    headerView.hidden = YES;
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES].labelText = @"Loading";
     
-	[[DeltekService sharedInstance] chargesWithCompletion:^(NSDictionary *c){
+	[[DeltekService sharedInstance] chargesWithCompletion:^(AccountRequest *anAccountRequest){
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         
-        self.charges = c;
-		self.accounts = [c objectForKey:@"accounts"];		
+        self.accountRequest = anAccountRequest;            
         
-        
-        NSArray *dateRange = [c objectForKey:@"dateRange"];
-        NSDate *start = [dateRange objectAtIndex:0];
-        NSDate *end = [dateRange objectAtIndex:1];
-        NSTimeInterval payPeriod = [end timeIntervalSinceDate:start];
-        
-        // Pay Period Progress calculation
-        int totalDays = payPeriod / SECONDS_IN_DAYS + 1;
-        int finishedDays = [[NSDate date] timeIntervalSinceDate:start] / SECONDS_IN_DAYS;
-        [progress setProgress:(float)finishedDays / totalDays];
+        if ([accountRequest isValid]) {
+            NSArray *dateRange = accountRequest.dateRange;
+            NSDate *start = [dateRange objectAtIndex:0];
+            NSDate *end = [dateRange objectAtIndex:1];
+            NSTimeInterval payPeriod = [end timeIntervalSinceDate:start];
+            
+            // Pay Period Progress calculation
+            int totalDays = payPeriod / SECONDS_IN_DAYS + 1;
+            int finishedDays = [[NSDate date] timeIntervalSinceDate:start] / SECONDS_IN_DAYS;
+            [daysProgress setProgress:(float)finishedDays / totalDays];
+            totalDaysLabel.text = [NSString stringWithFormat:@"%i / %i days", finishedDays, totalDays];
+            
+            totalHoursLabel.text = [NSString stringWithFormat:@"%@ of %@ hours", 
+                                    [NSNumber numberWithFloat:accountRequest.totalHours], 
+                                    [NSNumber numberWithFloat:accountRequest.required]];
+            [hoursProgress setProgress:accountRequest.totalHours / accountRequest.required];
+            
+            headerView.hidden = NO;
+        } else {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Unknown error occurred" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+            [alert release];            
+        }
         
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;        
 		[self.tableView reloadData];
-        
-        if ([self.accounts count] == 0) {
-            totalHoursLabel.text = @"Unable to retrieve accounts";
-        } else {
-            totalHoursLabel.text = [NSString stringWithFormat:@"%@ / %@ hours required", [c objectForKey:@"total"], [c objectForKey:@"required"]];
-        }
-        
+                
         self.tableView.tableHeaderView = headerView;                    
         self.tableView.tableFooterView = footerView;
 	}];
@@ -85,7 +120,7 @@
         return;
     }  
 
-    if (!self.charges)
+    if (!self.accountRequest)
         [self refresh];
 
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"debug_enabled"]) {
@@ -95,6 +130,19 @@
                                          target:self 
                                          action:@selector(toggleWebview)] autorelease];
     }
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    if (accountRequest) {        
+        totalHoursLabel.text = [NSString stringWithFormat:@"%@ of %@ hours", 
+                                [NSNumber numberWithFloat:accountRequest.totalHours], 
+                                [NSNumber numberWithFloat:accountRequest.required]];
+        [hoursProgress setProgress:accountRequest.totalHours / accountRequest.required];
+    }
+    
+    [self.tableView reloadData];
 }
 
 
@@ -127,7 +175,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [accounts count];
+    return [accountRequest.accounts count];
 }
 
 
@@ -147,9 +195,13 @@
         cell.textLabel.backgroundColor = [UIColor clearColor];
         cell.detailTextLabel.backgroundColor = [UIColor clearColor];
         
-        UILabel *hours = [[UILabel alloc] initWithFrame:CGRectMake(cell.frame.size.width - 30 - 30, 0, 30, tableView.rowHeight)];
+        
+        UIFont *font = [UIFont systemFontOfSize:18];
+        CGSize sizeToFit = [@"00.00" sizeWithFont:font];
+        NSLog(@"%@", cell.accessoryView);
+        UILabel *hours = [[UILabel alloc] initWithFrame:CGRectMake(cell.frame.size.width - 30 - sizeToFit.width, 0, sizeToFit.width, tableView.rowHeight)];
         hours.tag = HoursTag;
-        hours.font = [UIFont systemFontOfSize:18];
+        hours.font = font;
         hours.textColor = [UIColor grayColor];
         hours.backgroundColor = [UIColor clearColor];
         hours.highlightedTextColor = [UIColor whiteColor];
@@ -159,12 +211,12 @@
         [hours release];
     }
 
-    NSDictionary *charge = [accounts objectAtIndex:indexPath.row];
-	cell.textLabel.text = [charge objectForKey:@"name"];
-	cell.detailTextLabel.text = [charge objectForKey:@"code"];
+    Account *account = [accountRequest.accounts objectAtIndex:indexPath.row];
+	cell.textLabel.text = account.name;
+	cell.detailTextLabel.text = account.code;
 	
     UILabel *hours = (UILabel *)[cell.contentView viewWithTag:HoursTag];
-    hours.text = [[charge objectForKey:@"total"] stringValue];
+    hours.text = [[NSNumber numberWithFloat:account.totalHours] stringValue];
     
     return cell;
 }
@@ -175,7 +227,9 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {    
-    HoursViewController *hvc = [[HoursViewController alloc] initWithAccount:[accounts objectAtIndex:indexPath.row] accountIndex:indexPath.row dateRange:[charges objectForKey:@"dateRange"]];
+    HoursViewController *hvc = [[HoursViewController alloc] initWithAccount:[accountRequest.accounts objectAtIndex:indexPath.row] 
+                                                               accountIndex:indexPath.row 
+                                                                  dateRange:accountRequest.dateRange];
     [self.navigationController pushViewController:hvc animated:YES];
     [hvc release];
 }
@@ -186,23 +240,30 @@
 
 
 - (void)viewDidUnload {
-    self.accounts = nil;
-    self.charges = nil;
+    self.accountRequest = nil;
     self.footerView = nil;
     self.totalHoursLabel = nil;
     [self setHeaderView:nil];
-    [self setProgress:nil];
+    [self setHoursProgress:nil];
+    [self setTotalDaysLabel:nil];
+    [self setPtoLabel:nil];
+    [self setHolidayLabel:nil];
+    [self setDaysProgress:nil];
 	[super viewDidUnload];
 }
 
 
 - (void)dealloc {
-    [charges release];
-	[accounts release];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [accountRequest release];
     [footerView release];
     [totalHoursLabel release];
     [headerView release];
-    [progress release];
+    [hoursProgress release];
+    [totalDaysLabel release];
+    [ptoLabel release];
+    [holidayLabel release];
+    [daysProgress release];
     [super dealloc];
 }
 

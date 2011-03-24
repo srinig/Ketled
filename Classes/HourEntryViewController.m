@@ -7,6 +7,7 @@
 //
 
 #import "HourEntryViewController.h"
+#import "Account.h"
 
 @interface HourEntryViewController ()
 @property (nonatomic, retain) NSArray *pickerHours;
@@ -26,7 +27,7 @@
 
 @synthesize pickerHours, pickerMinutes;
 
-- (id)initWithAccount:(NSDictionary *)anAccount hours:(NSNumber *)aHours {
+- (id)initWithAccount:(Account *)anAccount hours:(NSNumber *)aHours {
     self = [super initWithNibName:@"HourEntryViewController" bundle:nil];
     if (self) {
         self.account = anAccount;
@@ -54,8 +55,8 @@
 {
     [super viewDidLoad];
     
-    accountLabel.text = [account objectForKey:@"name"];
-    codeLabel.text = [account objectForKey:@"code"];
+    accountLabel.text = account.name;
+    codeLabel.text = account.code;
     hourTextField.text = [hours stringValue];    
     
     NSMutableArray *h = [NSMutableArray array];

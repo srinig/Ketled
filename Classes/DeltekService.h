@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class SynchronousWebView;
+@class SynchronousWebView, AccountRequest;
 
 @interface DeltekService : NSObject<UIWebViewDelegate> {
     NSThread *workerThread;
@@ -17,6 +17,6 @@
 
 + (id)sharedInstance;
 
-- (void)chargesWithCompletion:(void(^)(NSDictionary *charges)) block;
+- (void)chargesWithCompletion:(void(^)(AccountRequest *request)) block;
 - (void)saveHours:(NSString *)hours accountIndex:(NSUInteger)accountIndex dayIndex:(NSUInteger)dayIndex completion:(void(^)(BOOL success, NSString *errorMessage))completion;
 @end

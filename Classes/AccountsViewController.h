@@ -8,21 +8,30 @@
 
 #import <UIKit/UIKit.h>
 
+@class AccountRequest;
+
 @interface AccountsViewController : UITableViewController {
-    NSDictionary *charges;
-	NSArray *accounts;    
+    AccountRequest *accountRequest;
+
     UIView *footerView;
+    UILabel *totalDaysLabel;
     UILabel *totalHoursLabel;
     UIView *headerView;
-    UIProgressView *progress;
+    UILabel *ptoLabel;
+    UILabel *holidayLabel;
+    UIProgressView *hoursProgress;
+    UIProgressView *daysProgress;
 }
 
-@property (nonatomic, retain) NSArray *accounts;
-@property (nonatomic, retain) NSDictionary *charges;
+@property (nonatomic, retain) AccountRequest *accountRequest;
 @property (nonatomic, retain) IBOutlet UIView *footerView;
+@property (nonatomic, retain) IBOutlet UILabel *totalDaysLabel;
 @property (nonatomic, retain) IBOutlet UILabel *totalHoursLabel;
 @property (nonatomic, retain) IBOutlet UIView *headerView;
-@property (nonatomic, retain) IBOutlet UIProgressView *progress;
+@property (nonatomic, retain) IBOutlet UILabel *ptoLabel;
+@property (nonatomic, retain) IBOutlet UILabel *holidayLabel;
+@property (nonatomic, retain) IBOutlet UIProgressView *hoursProgress;
+@property (nonatomic, retain) IBOutlet UIProgressView *daysProgress;
 
 
 - (IBAction)refresh;

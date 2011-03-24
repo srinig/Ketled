@@ -35,6 +35,8 @@
 		91A4B9EB1332FBBD007C06CA /* YAJLiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A4B9EA1332FBBD007C06CA /* YAJLiOS.framework */; };
 		91A4B9EC1332FBC8007C06CA /* YAJLiOS.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 91A4B9EA1332FBBD007C06CA /* YAJLiOS.framework */; };
 		91AFAD861331A75C00D28EAF /* HoursViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91AFAD841331A75C00D28EAF /* HoursViewController.m */; };
+		91B0451B133AC64A008975D1 /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B0451A133AC64A008975D1 /* Account.m */; };
+		91B0451E133AC771008975D1 /* AccountRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B0451D133AC771008975D1 /* AccountRequest.m */; };
 		91B724AA1330255800BC8575 /* SynchronousWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B724A91330255800BC8575 /* SynchronousWebView.m */; };
 		91BAC6551332794400D3D03E /* LoginController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91BAC6541332794400D3D03E /* LoginController.xib */; };
 		91BAC6C11332B2CA00D3D03E /* HourEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91BAC6BF1332B2CA00D3D03E /* HourEntryViewController.m */; };
@@ -93,6 +95,10 @@
 		91A4B9EA1332FBBD007C06CA /* YAJLiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = YAJLiOS.framework; sourceTree = "<group>"; };
 		91AFAD831331A75C00D28EAF /* HoursViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HoursViewController.h; sourceTree = "<group>"; };
 		91AFAD841331A75C00D28EAF /* HoursViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HoursViewController.m; sourceTree = "<group>"; };
+		91B04519133AC64A008975D1 /* Account.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Account.h; sourceTree = "<group>"; };
+		91B0451A133AC64A008975D1 /* Account.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Account.m; sourceTree = "<group>"; };
+		91B0451C133AC771008975D1 /* AccountRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountRequest.h; sourceTree = "<group>"; };
+		91B0451D133AC771008975D1 /* AccountRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountRequest.m; sourceTree = "<group>"; };
 		91B724A81330255800BC8575 /* SynchronousWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynchronousWebView.h; sourceTree = "<group>"; };
 		91B724A91330255800BC8575 /* SynchronousWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SynchronousWebView.m; sourceTree = "<group>"; };
 		91BAC6541332794400D3D03E /* LoginController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginController.xib; sourceTree = "<group>"; };
@@ -189,6 +195,10 @@
 				91C57E9C1326F0EC00578288 /* DeltekService.m */,
 				91B724A81330255800BC8575 /* SynchronousWebView.h */,
 				91B724A91330255800BC8575 /* SynchronousWebView.m */,
+				91B04519133AC64A008975D1 /* Account.h */,
+				91B0451A133AC64A008975D1 /* Account.m */,
+				91B0451C133AC771008975D1 /* AccountRequest.h */,
+				91B0451D133AC771008975D1 /* AccountRequest.m */,
 			);
 			name = Service;
 			sourceTree = "<group>";
@@ -357,6 +367,8 @@
 				91719D5513326A0B006B0033 /* NSDateExtensions.m in Sources */,
 				91719D5913326D48006B0033 /* LoginController.m in Sources */,
 				91BAC6C11332B2CA00D3D03E /* HourEntryViewController.m in Sources */,
+				91B0451B133AC64A008975D1 /* Account.m in Sources */,
+				91B0451E133AC771008975D1 /* AccountRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

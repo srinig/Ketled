@@ -8,7 +8,7 @@
 
 #import "DeltekService.h"
 #import "SynchronousWebView.h"
-#import "NSNumberExtensions.h"
+#import "AccountRequest.h"
 #import <YAJLiOS/YAJL.h>
 
 #define RETRY_COUNT 4
@@ -102,7 +102,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{ completion(success, errorMessage); });
 }
 
-- (void)chargesWithCompletion:(void(^)(NSDictionary *charges)) block {
+- (void)chargesWithCompletion:(void(^)(AccountRequest *request)) block {
     
 	if ([NSThread currentThread] != workerThread) {        
 		block = [[block copy] autorelease];
@@ -119,7 +119,10 @@
     
     [syncronousWebView waitForElement:@"menu_1" inFrame:@"navigationFrame"];
     [syncronousWebView resultFromScript:@"navigateTimesheet" input:nil];
-        
+    
+    [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:LAST_LOGIN_DATE];
+    
+    
     if ([syncronousWebView waitForElement:@"udt0_0" inFrame:@"unitFrame"]) {        
         NSString *accountsJson;
         int try = 1;
@@ -130,14 +133,11 @@
         
         
         NSDictionary *accounts = [accountsJson yajl_JSON];
-
-        NSDate *d1 = [[[accounts objectForKey:@"dateRange"] objectAtIndex:0] dateFromMillisecondsGMT];
-        NSDate *d2 = [[[accounts objectForKey:@"dateRange"] objectAtIndex:1] dateFromMillisecondsGMT];
         
-        [accounts setValue:[NSArray arrayWithObjects:d1, d2, nil] forKey:@"dateRange"];
+        AccountRequest *request = [AccountRequest accountRequestWithJsonDictionary:accounts];
         
         if (block) 
-            dispatch_async(dispatch_get_main_queue(), ^{ block(accounts); });
+            dispatch_async(dispatch_get_main_queue(), ^{ block(request); });
     }        
 }
 
