@@ -11,6 +11,7 @@
 #import "MBProgressHUD.h"
 #import "DeltekService.h"
 #import "Account.h"
+#import "NSNumberExtensions.h"
 
 @interface HoursViewController ()
 - (BOOL)isDateToday:(NSDate *)aDate;
@@ -111,7 +112,7 @@
     [df release];
     
     UILabel *hours = (UILabel *)[cell viewWithTag:4];    
-    hours.text = [[account.hours objectAtIndex:indexPath.row] stringValue];
+    hours.text = [[account.hours objectAtIndex:indexPath.row] formattedNumber];
     
     return cell;
 }

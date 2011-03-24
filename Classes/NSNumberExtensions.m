@@ -19,4 +19,15 @@
     
     return [NSDate dateWithTimeIntervalSince1970:seconds];
 }
+
+- (NSString *)formattedNumber {
+        
+    NSNumberFormatter *f = [[[NSNumberFormatter alloc] init] autorelease];
+    [f setMaximumFractionDigits:2];
+    [f setMinimumFractionDigits:0];
+    [f setFormatterBehavior:NSNumberFormatterDecimalStyle];
+    
+    return [f stringFromNumber:self];
+}
+
 @end

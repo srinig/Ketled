@@ -7,6 +7,7 @@
 //
 
 #import "HourEntryViewController.h"
+#import "NSNumberExtensions.h"
 #import "Account.h"
 
 @interface HourEntryViewController ()
@@ -57,22 +58,23 @@
     
     accountLabel.text = account.name;
     codeLabel.text = account.code;
-    hourTextField.text = [hours stringValue];    
+    NSString *hoursStr = [hours formattedNumber];
+    hourTextField.text = hoursStr;    
     
     NSMutableArray *h = [NSMutableArray array];
     NSMutableArray *m = [NSMutableArray array];    
     int selectedHourRow = NSNotFound;
     int selectedMinuteRow = NSNotFound;
         
-    NSRange r = [[hours stringValue] rangeOfString:@"."];
+    NSRange r = [hoursStr rangeOfString:@"."];
     NSString *hourComponent = nil;
     NSString *minuteComponent = nil;
     if (r.location == NSNotFound) {
-        hourComponent = [hours stringValue];
+        hourComponent = hoursStr;
         minuteComponent = @"0";        
     } else {
-        hourComponent = [[hours stringValue] substringToIndex:r.location];
-        minuteComponent = [[hours stringValue] substringFromIndex:r.location+1];
+        hourComponent = [hoursStr substringToIndex:r.location];
+        minuteComponent = [hoursStr substringFromIndex:r.location+1];
     }
 
     for (int i = 0; i <= 10; i++) {

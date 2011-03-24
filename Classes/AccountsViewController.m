@@ -13,6 +13,7 @@
 #import "LoginController.h"
 #import "AccountRequest.h"
 #import "Account.h"
+#import "NSNumberExtensions.h"
 
 @implementation AccountsViewController
 
@@ -81,8 +82,8 @@
             totalDaysLabel.text = [NSString stringWithFormat:@"%i / %i days", finishedDays, totalDays];
             
             totalHoursLabel.text = [NSString stringWithFormat:@"%@ of %@ hours", 
-                                    [NSNumber numberWithFloat:accountRequest.totalHours], 
-                                    [NSNumber numberWithFloat:accountRequest.required]];
+                                    [[NSNumber numberWithFloat:accountRequest.totalHours] formattedNumber], 
+                                    [[NSNumber numberWithFloat:accountRequest.required] formattedNumber]];
             [hoursProgress setProgress:accountRequest.totalHours / accountRequest.required];
             
             headerView.hidden = NO;
@@ -137,8 +138,8 @@
     
     if (accountRequest) {        
         totalHoursLabel.text = [NSString stringWithFormat:@"%@ of %@ hours", 
-                                [NSNumber numberWithFloat:accountRequest.totalHours], 
-                                [NSNumber numberWithFloat:accountRequest.required]];
+                                [[NSNumber numberWithFloat:accountRequest.totalHours] formattedNumber], 
+                                [[NSNumber numberWithFloat:accountRequest.required] formattedNumber]];
         [hoursProgress setProgress:accountRequest.totalHours / accountRequest.required];
     }
     
@@ -215,7 +216,7 @@
 	cell.detailTextLabel.text = account.code;
 	
     UILabel *hours = (UILabel *)[cell.contentView viewWithTag:HoursTag];
-    hours.text = [[NSNumber numberWithFloat:account.totalHours] stringValue];
+    hours.text = [[NSNumber numberWithFloat:account.totalHours] formattedNumber];
     
     return cell;
 }

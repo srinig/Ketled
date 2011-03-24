@@ -11,4 +11,5 @@
 
 @interface NSNumber (NSNumberExtensions)
 - (NSDate *)dateFromMillisecondsGMT;
+- (NSString *)formattedNumber;
 @end
