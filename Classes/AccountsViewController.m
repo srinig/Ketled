@@ -13,11 +13,14 @@
 #import "LoginController.h"
 #import "AccountRequest.h"
 #import "Account.h"
+#import "LeaveBalance.h"
+#import "LeaveBalanceView.h"
 #import "NSNumberExtensions.h"
 
 @implementation AccountsViewController
 
 @synthesize accountRequest;
+@synthesize leaveBalances;
 @synthesize footerView;
 @synthesize totalDaysLabel;
 @synthesize totalHoursLabel;
@@ -26,6 +29,8 @@
 @synthesize holidayLabel;
 @synthesize hoursProgress;
 @synthesize daysProgress;
+@synthesize leaveBalancesView;
+@synthesize leaveBalanceActivity;
 
 - (void)commonInit {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(timeoutNotification:) name:REFRESH_NEEDED object:nil];    
@@ -87,6 +92,20 @@
             [hoursProgress setProgress:accountRequest.totalHours / accountRequest.required];
             
             headerView.hidden = NO;
+            
+            [leaveBalanceActivity startAnimating];
+            [[DeltekService sharedInstance] leaveBalacesWithCompletion:^(NSArray *someLeaveBalances){
+                [leaveBalanceActivity stopAnimating];                
+                self.leaveBalances = someLeaveBalances;
+                if ([self isViewLoaded]) {
+                    self.leaveBalancesView.leaveBalances = leaveBalances;
+                    float height = [self.leaveBalancesView sizeThatFits:CGSizeZero].height;
+                    CGRect frame = footerView.frame;
+                    frame.size.height = self.leaveBalancesView.frame.origin.y + height + 20.0;                    
+                    footerView.frame = frame;
+                    self.tableView.tableFooterView = footerView;
+                }
+            }];
         } else {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Unknown error occurred" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alert show];
@@ -103,7 +122,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     self.tableView.contentInset = UIEdgeInsetsMake(-1 * headerView.frame.size.height, 0.0f, 0.0f, 0.0f);
     self.tableView.rowHeight = 60;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -142,6 +161,7 @@
                                 [[NSNumber numberWithFloat:accountRequest.required] formattedNumber]];
         [hoursProgress setProgress:accountRequest.totalHours / accountRequest.required];
     }
+    leaveBalancesView.leaveBalances = leaveBalances;
     
     [self.tableView reloadData];
 }
@@ -249,6 +269,8 @@
     [self setPtoLabel:nil];
     [self setHolidayLabel:nil];
     [self setDaysProgress:nil];
+    [self setLeaveBalancesView:nil];
+    [self setLeaveBalanceActivity:nil];
 	[super viewDidUnload];
 }
 
@@ -264,9 +286,10 @@
     [ptoLabel release];
     [holidayLabel release];
     [daysProgress release];
+    [leaveBalancesView release];
+    [leaveBalanceActivity release];
     [super dealloc];
 }
-
 
 @end
 

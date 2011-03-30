@@ -1,0 +1,1 @@
+window.frames['unitFrame'].window.getLeaveInfo();

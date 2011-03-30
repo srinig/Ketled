@@ -19,4 +19,5 @@
 
 - (void)chargesWithCompletion:(void(^)(AccountRequest *request)) block;
 - (void)saveHours:(NSString *)hours accountIndex:(NSUInteger)accountIndex dayIndex:(NSUInteger)dayIndex completion:(void(^)(BOOL success, NSString *errorMessage))completion;
+- (void)leaveBalacesWithCompletion:(void(^)(NSArray *leaveBalances)) block;
 @end

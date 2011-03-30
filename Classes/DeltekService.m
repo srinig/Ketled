@@ -9,6 +9,7 @@
 #import "DeltekService.h"
 #import "SynchronousWebView.h"
 #import "AccountRequest.h"
+#import "LeaveBalance.h"
 #import <YAJLiOS/YAJL.h>
 
 #define RETRY_COUNT 4
@@ -100,6 +101,58 @@
     
     if (completion) 
         dispatch_async(dispatch_get_main_queue(), ^{ completion(success, errorMessage); });
+}
+
+- (void)leaveBalacesWithCompletion:(void(^)(NSArray *leaveBalances)) block {
+    if ([NSThread currentThread] != workerThread) {        
+		block = [[block copy] autorelease];
+        [self performSelector:_cmd onThread:workerThread withObject:block waitUntilDone:NO];
+        return;
+    }
+
+    [syncronousWebView resultFromScript:@"leaveBalancePopup" input:nil];
+    
+    [syncronousWebView waitForElement:@"TsLeaveForm" 
+                       fromWindowPath:@"window.frames['unitFrame'].window.frames['modalFrame'].window"];
+
+    NSString *leaveBalanceJson;
+    int try = 1;
+    do {
+        leaveBalanceJson = [syncronousWebView resultFromScript:@"leaveBalanceNames" input:nil];
+        [NSThread sleepForTimeInterval:1.0];
+    } while ([leaveBalanceJson length] == 0 && ++try <= RETRY_COUNT);
+    
+    NSArray *leaveBalanceNames = [leaveBalanceJson yajl_JSON];
+            
+    if ([leaveBalanceNames count] > 0) {
+        NSString *json;
+        
+        NSMutableArray *balances = [NSMutableArray array];
+        for (NSString *name in leaveBalanceNames) {
+            [balances addObject:[LeaveBalance leaveBalanceWithName:name]];
+        }
+        
+        for (LeaveBalance *balance in balances) {
+            
+            int try = 1;
+            do {
+                json = [syncronousWebView resultFromScript:@"leaveBalanceCheck" 
+                                                     input:[NSDictionary dictionaryWithObject:balance.name
+                                                                                       forKey:@"balanceName"]];                
+                if ([json length] == 0) {
+                    [NSThread sleepForTimeInterval:1.0];
+                    [syncronousWebView waitForElement:@"balance" 
+                                       fromWindowPath:@"window.frames['unitFrame'].window.frames['modalFrame'].window"];                                        
+                }
+                try--;
+            } while ([json length] == 0 && try >= 0);
+            
+            balance.balance = [json floatValue];                                    
+        }
+        
+        if (block) 
+            dispatch_async(dispatch_get_main_queue(), ^{ block(balances); });
+    }
 }
 
 - (void)chargesWithCompletion:(void(^)(AccountRequest *request)) block {

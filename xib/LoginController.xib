@@ -86,7 +86,6 @@
 										<string key="NSFrame">{{10, 20}, {300, 37}}</string>
 										<reference key="NSSuperview" ref="754037012"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView"/>
 										<bool key="IBUIOpaque">NO</bool>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 										<int key="IBUIContentHorizontalAlignment">0</int>
@@ -117,9 +116,9 @@
 								<reference key="NSSuperview" ref="565032658"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="949189188"/>
-								<object class="NSColor" key="IBUIBackgroundColor">
+								<object class="NSColor" key="IBUIBackgroundColor" id="219202396">
 									<int key="NSColorSpace">2</int>
-									<bytes key="NSRGB">MCAwLjU0OTAxOTYzNDcgMC43Mjk0MTE3ODA4AA</bytes>
+									<bytes key="NSRGB">MC42MTE3NjQ3MDU5IDAuNzY4NjI3NDUxIDAuODY2NjY2NjY2NwA</bytes>
 								</object>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
@@ -130,7 +129,7 @@
 						<reference key="NSNextKeyView" ref="754037012"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">2</int>
-							<bytes key="NSRGB">MCAwLjU0OTAxOTYzNDcgMC43Mjk0MTE3ODA4AA</bytes>
+							<bytes key="NSRGB">MC42MTE3NjQ3MDU5IDAuNzY4NjI3NDUxIDAuODY2NjY2NjY2NwA</bytes>
 						</object>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -149,10 +148,7 @@
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="613301653"/>
-				<object class="NSColor" key="IBUIBackgroundColor">
-					<int key="NSColorSpace">2</int>
-					<bytes key="NSRGB">MCAwLjU0OTAxOTYzNDcgMC43Mjk0MTE3ODA4AA</bytes>
-				</object>
+				<reference key="IBUIBackgroundColor" ref="219202396"/>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
