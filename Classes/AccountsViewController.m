@@ -80,12 +80,23 @@
             NSDate *end = [dateRange objectAtIndex:1];
             NSTimeInterval payPeriod = [end timeIntervalSinceDate:start];
             
-            // Pay Period Progress calculation
+            // Pay Period Days calculation
             int totalDays = payPeriod / SECONDS_IN_DAYS + 1;
-            int finishedDays = [[NSDate date] timeIntervalSinceDate:start] / SECONDS_IN_DAYS;
-            [daysProgress setProgress:(float)finishedDays / totalDays];
-            totalDaysLabel.text = [NSString stringWithFormat:@"%i / %i days", finishedDays, totalDays];
+            int finishedDays = [[NSDate date] timeIntervalSinceDate:start] / SECONDS_IN_DAYS;            
+            NSCalendar *cal = [NSCalendar currentCalendar];
+            NSTimeZone *timeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];    
+            [cal setTimeZone:timeZone];            
+            int weekendDaysFound = 0;
+            for (int i = 0; i < totalDays; i++) {
+                NSDateComponents *dayOfWeek = [cal components:NSWeekdayCalendarUnit fromDate:[start dateByAddingTimeInterval:i * SECONDS_IN_DAYS]];                
+                if ([dayOfWeek weekday] == 1 || [dayOfWeek weekday] == 7) {
+                    weekendDaysFound++;
+                }                
+            }    
+            [daysProgress setProgress:((float)finishedDays-weekendDaysFound) / (totalDays-weekendDaysFound)];                    
+            totalDaysLabel.text = [NSString stringWithFormat:@"%i of %i workdays", finishedDays-weekendDaysFound, totalDays-weekendDaysFound];
             
+            // Pay Period Hours Calculation
             totalHoursLabel.text = [NSString stringWithFormat:@"%@ of %@ hours", 
                                     [[NSNumber numberWithFloat:accountRequest.totalHours] formattedNumber], 
                                     [[NSNumber numberWithFloat:accountRequest.required] formattedNumber]];
