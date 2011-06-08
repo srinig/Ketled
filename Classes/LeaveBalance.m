@@ -19,13 +19,9 @@
     lb.name = aName;
     lb.balance = 0.0;
     
-    return [lb autorelease];
+    return lb;
 }
 
-- (void)dealloc {
-    [name release];
-    [super dealloc];
-}
 
 - (NSString *)description {
     return [NSString stringWithFormat:@"%@, %f", name, balance];

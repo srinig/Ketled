@@ -17,7 +17,7 @@
 @interface HourEntryViewController : UIViewController<UIPickerViewDataSource> {
     Account *account;
     NSNumber *hours;
-    id<HourEntryDelegate> delegate;
+    id<HourEntryDelegate> __unsafe_unretained delegate;
     UIPickerView *hourPicker;
     UILabel *accountLabel;
     UILabel *codeLabel;

@@ -8,7 +8,6 @@
     UITableViewCell *cell = (UITableViewCell *)tempViewController.view;
 
     NSAssert([reuseId isEqual:cell.reuseIdentifier], @"resuse identifier does not match nib"); 
-    [tempViewController release];
     return cell;
 }
 @end

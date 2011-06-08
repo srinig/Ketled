@@ -75,7 +75,7 @@
     if (cell == nil) {
         cell = [UITableViewCell tableViewCellFromNib:@"HoursCell" reuseIdentifier:@"HoursCell"];
         tableView.rowHeight = cell.frame.size.height;
-        cell.backgroundView = [[[UIView alloc] init] autorelease];
+        cell.backgroundView = [[UIView alloc] init];
     }
     
     NSDate *startDate = [range objectAtIndex:0];
@@ -109,7 +109,6 @@
     [df setDateFormat:@"MMM"];
     UILabel *month = (UILabel *)[cell viewWithTag:3];
     month.text = [[df stringFromDate:cellDate] uppercaseString];    
-    [df release];
     
     UILabel *hours = (UILabel *)[cell viewWithTag:4];    
     hours.text = [[account.hours objectAtIndex:indexPath.row] formattedNumber];
@@ -127,7 +126,6 @@
                                                                              hours:hours];
     vc.delegate = self;
     [self presentModalViewController:vc animated:YES];
-    [vc release];
 }
 
 - (BOOL)isDateToday:(NSDate *)aDate {    
@@ -157,11 +155,11 @@
                                        [MBProgressHUD hideHUDForView:vc.view animated:YES];
                                        
                                        if (errorMessage) {
-                                           [[[[UIAlertView alloc] initWithTitle:(success ? @"Warning" : @"Error") 
+                                           [[[UIAlertView alloc] initWithTitle:(success ? @"Warning" : @"Error") 
                                                                         message:errorMessage 
                                                                        delegate:nil 
                                                               cancelButtonTitle:@"OK" 
-                                                              otherButtonTitles:nil] autorelease] show];            
+                                                              otherButtonTitles:nil] show];            
                                        }
                                        
                                        if (success) {

@@ -17,13 +17,12 @@
 
 - (void)setLeaveBalances:(NSArray *)newLeaveBalances {
     if (leaveBalances != newLeaveBalances) {
-        [leaveBalances release];
         leaveBalances = [newLeaveBalances copy];
                 
         [self.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
         
         for (LeaveBalance *leaveBalance in leaveBalances) {
-            UILabel *nameLabel = [[[UILabel alloc] init] autorelease];
+            UILabel *nameLabel = [[UILabel alloc] init];
             nameLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
             nameLabel.text = leaveBalance.name;
             nameLabel.font = [UIFont systemFontOfSize:11.0];
@@ -32,7 +31,7 @@
             nameLabel.shadowOffset = CGSizeMake(0, 1);
             nameLabel.backgroundColor = [UIColor clearColor];
             
-            UILabel *balanceLabel = [[[UILabel alloc] init] autorelease];
+            UILabel *balanceLabel = [[UILabel alloc] init];
             balanceLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
             balanceLabel.text = [[NSNumber numberWithFloat:leaveBalance.balance] formattedNumber];
             balanceLabel.font = [UIFont boldSystemFontOfSize:11.0];
@@ -42,7 +41,7 @@
             balanceLabel.shadowOffset = CGSizeMake(0, 1);
             balanceLabel.backgroundColor = [UIColor clearColor];
             
-            UIView *combined = [[[UIView alloc] init] autorelease];       
+            UIView *combined = [[UIView alloc] init];       
             combined.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
             combined.frame = CGRectMake(0, 0, self.bounds.size.width, 18);
             nameLabel.frame = CGRectMake(self.bounds.size.width - 100, 0, 100, 18);
@@ -73,10 +72,5 @@
     return CGSizeMake(self.bounds.size.width, [self.leaveBalances count] * (18 + 8));
 }
 
-- (void)dealloc
-{
-    [leaveBalances release];
-    [super dealloc];
-}
 
 @end

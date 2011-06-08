@@ -126,7 +126,6 @@
         } else {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Unknown error occurred" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alert show];
-            [alert release];            
         }
         
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;        
@@ -152,7 +151,6 @@
 
         LoginController *login = [[LoginController alloc] initWithFinishedInvocation:i];
         [self presentModalViewController:login animated:YES];
-        [login release];
 
         return;
     }  
@@ -162,10 +160,10 @@
 
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"debug_enabled"]) {
         self.navigationItem.rightBarButtonItem = 
-        [[[UIBarButtonItem alloc] initWithTitle:@"Debug" 
+        [[UIBarButtonItem alloc] initWithTitle:@"Debug" 
                                           style:UIBarButtonItemStyleBordered 
                                          target:self 
-                                         action:@selector(toggleWebview)] autorelease];
+                                         action:@selector(toggleWebview)];
     }
 }
 
@@ -225,9 +223,9 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        cell.backgroundView = [[[UIView alloc] init] autorelease];
+        cell.backgroundView = [[UIView alloc] init];
         cell.backgroundView.backgroundColor = [UIColor whiteColor];
         
         cell.textLabel.backgroundColor = [UIColor clearColor];
@@ -245,7 +243,6 @@
         hours.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
         hours.textAlignment = UITextAlignmentRight;
         [cell.contentView addSubview:hours];
-        [hours release];
     }
 
     Account *account = [accountRequest.accounts objectAtIndex:indexPath.row];
@@ -268,7 +265,6 @@
                                                                accountIndex:indexPath.row 
                                                                   dateRange:accountRequest.dateRange];
     [self.navigationController pushViewController:hvc animated:YES];
-    [hvc release];
 }
 
 
@@ -294,18 +290,6 @@
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [accountRequest release];
-    [footerView release];
-    [totalHoursLabel release];
-    [headerView release];
-    [hoursProgress release];
-    [totalDaysLabel release];
-    [ptoLabel release];
-    [holidayLabel release];
-    [daysProgress release];
-    [leaveBalancesView release];
-    [leaveBalanceActivity release];
-    [super dealloc];
 }
 
 @end

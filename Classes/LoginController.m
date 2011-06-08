@@ -41,17 +41,6 @@
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [login release];
-    [password release];
-    [domain release];
-    [finished release];
-    [url release];
-    [urlCell release];
-    [loginCell release];
-    [passwordCell release];
-    [domainCell release];
-    [tableView release];
-    [super dealloc];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -115,8 +104,8 @@
     return 38;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    UIView *containerView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 300, 38)] autorelease];
-    UILabel *headerLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10, 0, 300, 44)] autorelease];
+    UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 300, 38)];
+    UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 300, 44)];
 
     headerLabel.text = (section == 0 ? @"Deltek Url" : @"Credentials");
     headerLabel.textColor = [UIColor whiteColor];

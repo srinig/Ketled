@@ -32,14 +32,9 @@
     
     inst.required = [[json objectForKey:@"required"] floatValue];
     
-    return [inst autorelease];
+    return inst;
 }
 
-- (void)dealloc {
-    [dateRange release];
-    [accounts release];
-    [super dealloc];
-}
 
 
 - (float)totalHours {

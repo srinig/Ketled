@@ -79,8 +79,8 @@
     dispatch_group_t group = dispatch_group_create();    
     dispatch_group_async(group, dispatch_get_main_queue(), ^{
         NSURL *url = [[NSBundle mainBundle] URLForResource:scriptName withExtension:@"js"];
-        NSString *s = [[[NSString alloc] initWithContentsOfURL:url] autorelease];
-        
+        NSString *s = [[NSString alloc] initWithContentsOfURL:url encoding:NSUTF8StringEncoding error:nil];
+    
         // replace $ with getbyid
         s = [s stringByReplacingOccurrencesOfString:@"$" withString:@"document.getElementById"];				 
 
@@ -93,7 +93,7 @@
             }
         }
         
-        result = [[webview stringByEvaluatingJavaScriptFromString:s] retain];
+        result = [webview stringByEvaluatingJavaScriptFromString:s];
         
         NSString *errorMessage = [webview stringByEvaluatingJavaScriptFromString:@"_ketledLastError"];
         if (![errorMessage isEqualToString:@""]) {
@@ -107,7 +107,7 @@
     
     LOG_FINISHED
     
-    return [result autorelease];
+    return result;
 }
 
 

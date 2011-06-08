@@ -22,7 +22,7 @@
 
 - (NSString *)formattedNumber {
         
-    NSNumberFormatter *f = [[[NSNumberFormatter alloc] init] autorelease];
+    NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
     [f setMaximumFractionDigits:2];
     [f setMinimumFractionDigits:0];
     [f setFormatterBehavior:NSNumberFormatterDecimalStyle];

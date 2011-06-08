@@ -125,7 +125,7 @@ typedef enum {
 	
 	float progress;
 	
-	id<MBProgressHUDDelegate> delegate;
+	id<MBProgressHUDDelegate> __unsafe_unretained delegate;
 	NSString *labelText;
 	NSString *detailsLabelText;
 	float opacity;

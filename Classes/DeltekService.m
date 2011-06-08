@@ -37,26 +37,21 @@
 	return self;
 }
 
-- (void) dealloc
-{
-	[syncronousWebView release];
-	[super dealloc];
-}
 
 - (void)run {
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    syncronousWebView = [[SynchronousWebView alloc] init];
-    while (YES) {
-        [[NSRunLoop currentRunLoop] runUntilDate:[NSDate distantFuture]];
-    }         
-    [pool drain];
+    @autoreleasepool {
+        syncronousWebView = [[SynchronousWebView alloc] init];
+        while (YES) {
+            [[NSRunLoop currentRunLoop] runUntilDate:[NSDate distantFuture]];
+        }         
+    }
 }
 
 
 - (void)saveHours:(NSString *)hours accountIndex:(NSUInteger)accountIndex dayIndex:(NSUInteger)dayIndex completion:(void(^)(BOOL success, NSString *errorMessage))completion {
 
     if ([NSThread currentThread] != workerThread) {        
-		completion = [[completion copy] autorelease];
+		completion = [completion copy];
         
         NSInvocation *i = [NSInvocation invocationWithMethodSignature:[self methodSignatureForSelector:_cmd]];
         [i setSelector:_cmd];
@@ -105,7 +100,7 @@
 
 - (void)leaveBalacesWithCompletion:(void(^)(NSArray *leaveBalances)) block {
     if ([NSThread currentThread] != workerThread) {        
-		block = [[block copy] autorelease];
+		block = [block copy];
         [self performSelector:_cmd onThread:workerThread withObject:block waitUntilDone:NO];
         return;
     }
@@ -158,7 +153,7 @@
 - (void)chargesWithCompletion:(void(^)(AccountRequest *request)) block {
     
 	if ([NSThread currentThread] != workerThread) {        
-		block = [[block copy] autorelease];
+		block = [block copy];
         // reset webview
         syncronousWebView.webview = nil;
         [self performSelector:_cmd onThread:workerThread withObject:block waitUntilDone:NO];

@@ -37,18 +37,6 @@
     return self;
 }
 
-- (void)dealloc
-{
-    [pickerHours release];
-    [pickerMinutes release];
-    [hours release];
-    [account release];
-    [hourPicker release];
-    [accountLabel release];
-    [hourTextField release];
-    [codeLabel release];
-    [super dealloc];
-}
 
 #pragma mark - View lifecycle
 
@@ -93,8 +81,8 @@
         }
     }
     
-    self.pickerHours = [[NSArray arrayWithArray:h] retain];
-    self.pickerMinutes = [[NSArray arrayWithArray:m] retain];
+    self.pickerHours = [NSArray arrayWithArray:h];
+    self.pickerMinutes = [NSArray arrayWithArray:m];
     
     [hourPicker reloadAllComponents];
 
@@ -150,7 +138,7 @@
 
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UILabel *)label {
     if (!label) {
-        label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, component == 1 ? 13 : 70, 44)] autorelease];
+        label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, component == 1 ? 13 : 70, 44)];
         label.textColor = component == 0 ? [UIColor blackColor] : [UIColor colorWithWhite:0.2 alpha:1.0];
         label.textAlignment = component == 2 ? UITextAlignmentLeft : UITextAlignmentRight;    
         label.font = [UIFont boldSystemFontOfSize:30];        

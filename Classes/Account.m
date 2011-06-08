@@ -21,15 +21,9 @@
     inst.code = [d objectForKey:@"code"];
     inst.hours = [d objectForKey:@"hours"];
     
-    return [inst autorelease];
+    return inst;
 }
 
-- (void)dealloc {
-    [name release];
-    [code release];
-    [hours release];
-    [super dealloc];
-}
 
 - (float)totalHours {
     float total = 0;
