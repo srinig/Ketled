@@ -10,5 +10,6 @@
 
 
 @interface NSDate (NSDateExtensions)
-
+- (BOOL)isToday;
++ (NSDate *)todayGMT;
 @end

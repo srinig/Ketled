@@ -10,6 +10,7 @@
 #import "AccountRequest.h"
 #import "Account.h"
 #import "CellLoader.h"
+#import "NSDateExtensions.h"
 
 @implementation WeeklyViewController
 @synthesize accountsScrollView;
@@ -52,6 +53,7 @@
     
     float accountHeight = 0;
     float y = 0;
+    BOOL oddEven = YES;
     for (Account *account in accountRequest.accounts) {
         UILabel *accountLabel= (UILabel *)[CellLoader newCellWithType:@"WeeklyAccountCell"];
         CGRect adjusted = accountLabel.frame;
@@ -60,6 +62,14 @@
         adjusted.size.width = accountsScrollView.frame.size.width;
         accountLabel.frame = adjusted;
         accountLabel.text = account.name;
+        
+        if (oddEven) {
+            accountLabel.backgroundColor = [UIColor colorWithWhite:0.98 alpha:1.0];
+        } else {
+            accountLabel.backgroundColor = [UIColor colorWithWhite:1.0 alpha:1.0];
+        }
+        oddEven = !oddEven;
+        
         [accountsScrollView addSubview:accountLabel];
     }
     accountsScrollView.contentSize = CGSizeMake(accountsScrollView.frame.size.width, y);
@@ -84,6 +94,10 @@
         UILabel *dateLabel = (UILabel *)[dayCell viewWithTag:2];
         dateLabel.text = [dateDf stringFromDate:cellDate];
         
+        if ([cellDate isToday]) {
+            weekdayLabel.textColor = [UIColor colorWithRed:0 green:140/256.0 blue:186/256.0 alpha:1.0];
+        }
+        
         NSDateComponents *dayOfWeekComponents = [gregorian components:NSWeekdayCalendarUnit fromDate:cellDate];
         if ([dayOfWeekComponents weekday] == 6 || [dayOfWeekComponents weekday] == 7) {
             dayCell.backgroundColor = [UIColor colorWithWhite:0.94 alpha:1.0];
@@ -95,6 +109,7 @@
         
         dayTotal = 0;
         y = 0;
+        oddEven = YES;
         for (Account *account in accountRequest.accounts) {
             UILabel *hourLabel = (UILabel *)[CellLoader newCellWithType:@"WeeklyHourCell"];
             CGRect adjusted = hourLabel.frame;
@@ -112,10 +127,19 @@
             }
             
             if ([dayOfWeekComponents weekday] == 6 || [dayOfWeekComponents weekday] == 7) {
-                hourLabel.backgroundColor = [UIColor colorWithWhite:0.94 alpha:1.0];
+                if (oddEven) {
+                    hourLabel.backgroundColor = [UIColor colorWithWhite:0.94 alpha:1.0];
+                } else {
+                    hourLabel.backgroundColor = [UIColor colorWithWhite:0.96 alpha:1.0];
+                }
             } else {
-                hourLabel.backgroundColor = [UIColor colorWithWhite:1.0 alpha:1.0];
+                if (oddEven) {
+                    hourLabel.backgroundColor = [UIColor colorWithWhite:0.98 alpha:1.0];
+                } else {
+                    hourLabel.backgroundColor = [UIColor colorWithWhite:1.0 alpha:1.0];
+                }
             }
+            oddEven = !oddEven;
             
             [hoursScrollView addSubview:hourLabel];
             

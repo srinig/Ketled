@@ -12,11 +12,7 @@
 #import "DeltekService.h"
 #import "Account.h"
 #import "NSNumberExtensions.h"
-
-@interface HoursViewController ()
-- (BOOL)isDateToday:(NSDate *)aDate;
-- (NSDate *)todayGMT;
-@end
+#import "NSDateExtensions.h"
 
 @implementation HoursViewController
 
@@ -51,7 +47,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
         
-    int days = [[self todayGMT] timeIntervalSinceDate:[range objectAtIndex:0]] / SECONDS_IN_DAYS;
+    int days = [[NSDate todayGMT] timeIntervalSinceDate:[range objectAtIndex:0]] / SECONDS_IN_DAYS;
     
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:days inSection:0];
     
@@ -101,7 +97,7 @@
     [df setDateFormat:@"dd"];
     UILabel *day = (UILabel *)[cell viewWithTag:2];
     day.text = [df stringFromDate:cellDate];
-    if ([self isDateToday:cellDate]) {
+    if ([cellDate isToday]) {
         day.textColor = self.navigationController.navigationBar.tintColor;
     } else
         day.textColor = weekday.textColor;    
@@ -126,16 +122,6 @@
                                                                              hours:hours];
     vc.delegate = self;
     [self presentModalViewController:vc animated:YES];
-}
-
-- (BOOL)isDateToday:(NSDate *)aDate {    
-    NSCalendar *cal = [NSCalendar currentCalendar];
-    [cal setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"GMT"]];
-    NSDateComponents *components = [cal components:(NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit) fromDate:[self todayGMT]];
-    NSDate *today = [cal dateFromComponents:components];
-    components = [cal components:(NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit) fromDate:aDate];
-    NSDate *otherDate = [cal dateFromComponents:components];
-    return [today isEqualToDate:otherDate];
 }
 
 
@@ -174,11 +160,5 @@
                                    }];
 }
 
-
-#pragma mark Private
-
-- (NSDate *)todayGMT {
-    return [[NSDate date] dateByAddingTimeInterval:[[NSTimeZone defaultTimeZone] secondsFromGMT]];
-}
 
 @end
