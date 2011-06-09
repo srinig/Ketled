@@ -13,6 +13,12 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		28C286E10D94DF7D0034E888 /* AccountsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* AccountsViewController.m */; };
+		50F42772139FE90F00EBB383 /* WeeklyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F42770139FE90F00EBB383 /* WeeklyViewController.m */; };
+		50F42773139FE90F00EBB383 /* WeeklyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50F42771139FE90F00EBB383 /* WeeklyViewController.xib */; };
+		50F42779139FFE0A00EBB383 /* WeeklyAccountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50F42778139FFE0A00EBB383 /* WeeklyAccountCell.xib */; };
+		50F4277B139FFECE00EBB383 /* WeeklyDayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50F4277A139FFECE00EBB383 /* WeeklyDayCell.xib */; };
+		50F4277D139FFF3700EBB383 /* WeeklyHourCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50F4277C139FFF3700EBB383 /* WeeklyHourCell.xib */; };
+		50F4278013A0015B00EBB383 /* CellLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F4277F13A0015B00EBB383 /* CellLoader.m */; };
 		912453A913318319004B24F4 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 912453A813318319004B24F4 /* MBProgressHUD.m */; };
 		9141F0711332391700D0B6BA /* shadow-reverse.png in Resources */ = {isa = PBXBuildFile; fileRef = 9141F0681332391700D0B6BA /* shadow-reverse.png */; };
 		9141F0721332391700D0B6BA /* shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 9141F0691332391700D0B6BA /* shadow.png */; };
@@ -73,6 +79,14 @@
 		28C286DF0D94DF7D0034E888 /* AccountsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountsViewController.h; sourceTree = "<group>"; };
 		28C286E00D94DF7D0034E888 /* AccountsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountsViewController.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		50F4276F139FE90F00EBB383 /* WeeklyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeeklyViewController.h; sourceTree = "<group>"; };
+		50F42770139FE90F00EBB383 /* WeeklyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeeklyViewController.m; sourceTree = "<group>"; };
+		50F42771139FE90F00EBB383 /* WeeklyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WeeklyViewController.xib; path = ../Classes/WeeklyViewController.xib; sourceTree = "<group>"; };
+		50F42778139FFE0A00EBB383 /* WeeklyAccountCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeeklyAccountCell.xib; sourceTree = "<group>"; };
+		50F4277A139FFECE00EBB383 /* WeeklyDayCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeeklyDayCell.xib; sourceTree = "<group>"; };
+		50F4277C139FFF3700EBB383 /* WeeklyHourCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeeklyHourCell.xib; sourceTree = "<group>"; };
+		50F4277E13A0015B00EBB383 /* CellLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellLoader.h; sourceTree = "<group>"; };
+		50F4277F13A0015B00EBB383 /* CellLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellLoader.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Ketled-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Ketled-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		912453A713318319004B24F4 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		912453A813318319004B24F4 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
@@ -239,6 +253,8 @@
 				91719D5713326D46006B0033 /* LoginController.m */,
 				91BAC6BE1332B2CA00D3D03E /* HourEntryViewController.h */,
 				91BAC6BF1332B2CA00D3D03E /* HourEntryViewController.m */,
+				50F4276F139FE90F00EBB383 /* WeeklyViewController.h */,
+				50F42770139FE90F00EBB383 /* WeeklyViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -254,6 +270,8 @@
 				91719D40133252A3006B0033 /* NSNumberExtensions.m */,
 				91719D5313326A0A006B0033 /* NSDateExtensions.h */,
 				91719D5413326A0A006B0033 /* NSDateExtensions.m */,
+				50F4277E13A0015B00EBB383 /* CellLoader.h */,
+				50F4277F13A0015B00EBB383 /* CellLoader.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -293,6 +311,10 @@
 				9141F0701332391700D0B6BA /* MainWindow.xib */,
 				91BAC6541332794400D3D03E /* LoginController.xib */,
 				91719D4213325601006B0033 /* HoursCell.xib */,
+				50F42771139FE90F00EBB383 /* WeeklyViewController.xib */,
+				50F42778139FFE0A00EBB383 /* WeeklyAccountCell.xib */,
+				50F4277A139FFECE00EBB383 /* WeeklyDayCell.xib */,
+				50F4277C139FFF3700EBB383 /* WeeklyHourCell.xib */,
 			);
 			path = xib;
 			sourceTree = "<group>";
@@ -370,6 +392,10 @@
 				91992A0E13429FED0043FE55 /* leaveBalancePopup.js in Resources */,
 				91992A101342A6B40043FE55 /* leaveBalanceCheck.js in Resources */,
 				917D8579133549A900DD5E8D /* Settings.bundle in Resources */,
+				50F42773139FE90F00EBB383 /* WeeklyViewController.xib in Resources */,
+				50F42779139FFE0A00EBB383 /* WeeklyAccountCell.xib in Resources */,
+				50F4277B139FFECE00EBB383 /* WeeklyDayCell.xib in Resources */,
+				50F4277D139FFF3700EBB383 /* WeeklyHourCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,6 +422,8 @@
 				91B0451E133AC771008975D1 /* AccountRequest.m in Sources */,
 				91992A0713429DF00043FE55 /* LeaveBalance.m in Sources */,
 				91992A131342AEE50043FE55 /* LeaveBalanceView.m in Sources */,
+				50F42772139FE90F00EBB383 /* WeeklyViewController.m in Sources */,
+				50F4278013A0015B00EBB383 /* CellLoader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

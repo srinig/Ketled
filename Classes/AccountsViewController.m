@@ -11,6 +11,7 @@
 #import "MBProgressHUD.h"
 #import "HoursViewController.h"
 #import "LoginController.h"
+#import "WeeklyViewController.h"
 #import "AccountRequest.h"
 #import "Account.h"
 #import "LeaveBalance.h"
@@ -33,7 +34,9 @@
 @synthesize leaveBalanceActivity;
 
 - (void)commonInit {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(timeoutNotification:) name:REFRESH_NEEDED object:nil];    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(timeoutNotification:) name:REFRESH_NEEDED object:nil];   
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged:) name:UIDeviceOrientationDidChangeNotification object:nil];
 }
 
 - (id)initWithCoder:(NSCoder *)coder {
@@ -200,7 +203,14 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    return YES;
+    return UIInterfaceOrientationIsPortrait(interfaceOrientation);
+}
+
+- (void)orientationChanged:(NSNotification *)aNotification {
+    if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {    
+        WeeklyViewController *landscape = [[WeeklyViewController alloc] initWithAccountRequest:accountRequest];
+        [self presentModalViewController:landscape animated:NO];
+    }
 }
 
 #pragma mark -
