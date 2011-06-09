@@ -68,8 +68,8 @@
     NSDate *startDate = [accountRequest.dateRange objectAtIndex:0];
     NSDate *endDate = [accountRequest.dateRange objectAtIndex:1];
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    NSDateComponents *components = [gregorian components:NSDayCalendarUnit fromDate:startDate toDate:endDate options:0];
-    int numberOfDays = (int)[components day] + 1;
+    NSDateComponents *dayComponents = [gregorian components:NSDayCalendarUnit fromDate:startDate toDate:endDate options:0];
+    int numberOfDays = (int)[dayComponents day] + 1;
     
     float x = 0;
     for (int i = 0; i < numberOfDays; i++) {
@@ -77,12 +77,20 @@
         CGRect dayCellFrame = dayCell.frame;
         dayCellFrame.origin.x = x;        
         dayCell.frame = dayCellFrame;        
-        [components setDay:i];
-        NSDate *cellDate = [gregorian dateByAddingComponents:components toDate:startDate options:0];
+        [dayComponents setDay:i];
+        NSDate *cellDate = [gregorian dateByAddingComponents:dayComponents toDate:startDate options:0];
         UILabel *weekdayLabel = (UILabel *)[dayCell viewWithTag:1];
         weekdayLabel.text = [weekdayDf stringFromDate:cellDate];
         UILabel *dateLabel = (UILabel *)[dayCell viewWithTag:2];
         dateLabel.text = [dateDf stringFromDate:cellDate];
+        
+        NSDateComponents *dayOfWeekComponents = [gregorian components:NSWeekdayCalendarUnit fromDate:cellDate];
+        if ([dayOfWeekComponents weekday] == 6 || [dayOfWeekComponents weekday] == 7) {
+            dayCell.backgroundColor = [UIColor colorWithWhite:0.94 alpha:1.0];
+        } else {
+            dayCell.backgroundColor = [UIColor colorWithWhite:1.0 alpha:1.0];
+        }
+        
         [daysScrollView addSubview:dayCell];
         
         y = 0;
@@ -101,6 +109,13 @@
             } else {
                 label.text = @"";
             }
+            
+            if ([dayOfWeekComponents weekday] == 6 || [dayOfWeekComponents weekday] == 7) {
+                hourCell.backgroundColor = [UIColor colorWithWhite:0.94 alpha:1.0];
+            } else {
+                hourCell.backgroundColor = [UIColor colorWithWhite:1.0 alpha:1.0];
+            }
+            
             [hoursScrollView addSubview:hourCell];
             
             y += accountHeight;
