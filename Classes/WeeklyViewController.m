@@ -53,15 +53,14 @@
     float accountHeight = 0;
     float y = 0;
     for (Account *account in accountRequest.accounts) {
-        UIView *accountCell = [CellLoader newCellWithType:@"WeeklyAccountCell"];
-        CGRect adjusted = accountCell.frame;
+        UILabel *accountLabel= (UILabel *)[CellLoader newCellWithType:@"WeeklyAccountCell"];
+        CGRect adjusted = accountLabel.frame;
         adjusted.origin.y = y;
         y += (accountHeight = adjusted.size.height);
         adjusted.size.width = accountsScrollView.frame.size.width;
-        accountCell.frame = adjusted;
-        UILabel *label = (UILabel *)[accountCell viewWithTag:1];
-        label.text = account.name;
-        [accountsScrollView addSubview:accountCell];
+        accountLabel.frame = adjusted;
+        accountLabel.text = account.name;
+        [accountsScrollView addSubview:accountLabel];
     }
     accountsScrollView.contentSize = CGSizeMake(accountsScrollView.frame.size.width, y);
 
@@ -71,6 +70,7 @@
     NSDateComponents *dayComponents = [gregorian components:NSDayCalendarUnit fromDate:startDate toDate:endDate options:0];
     int numberOfDays = (int)[dayComponents day] + 1;
     
+    float dayTotal = 0;
     float x = 0;
     for (int i = 0; i < numberOfDays; i++) {
         UIView *dayCell = [CellLoader newCellWithType:@"WeeklyDayCell"];
@@ -93,36 +93,51 @@
         
         [daysScrollView addSubview:dayCell];
         
+        dayTotal = 0;
         y = 0;
         for (Account *account in accountRequest.accounts) {
-            UIView *hourCell = [CellLoader newCellWithType:@"WeeklyHourCell"];
-            CGRect adjusted = hourCell.frame;
+            UILabel *hourLabel = (UILabel *)[CellLoader newCellWithType:@"WeeklyHourCell"];
+            CGRect adjusted = hourLabel.frame;
             adjusted.origin.x = x;
             adjusted.origin.y = y;
             adjusted.size.height = accountHeight;
             adjusted.size.width = dayCellFrame.size.width;
-            hourCell.frame = adjusted;
-            UILabel *label = (UILabel *)[hourCell viewWithTag:1];
+            hourLabel.frame = adjusted;
             float hours = [[account.hours objectAtIndex:i] floatValue];
+            dayTotal += hours;
             if (hours > 0) {
-                label.text = [NSString stringWithFormat:@"%3.1f", hours];
+                hourLabel.text = [NSString stringWithFormat:@"%3.1f", hours];
             } else {
-                label.text = @"";
+                hourLabel.text = @"";
             }
             
             if ([dayOfWeekComponents weekday] == 6 || [dayOfWeekComponents weekday] == 7) {
-                hourCell.backgroundColor = [UIColor colorWithWhite:0.94 alpha:1.0];
+                hourLabel.backgroundColor = [UIColor colorWithWhite:0.94 alpha:1.0];
             } else {
-                hourCell.backgroundColor = [UIColor colorWithWhite:1.0 alpha:1.0];
+                hourLabel.backgroundColor = [UIColor colorWithWhite:1.0 alpha:1.0];
             }
             
-            [hoursScrollView addSubview:hourCell];
+            [hoursScrollView addSubview:hourLabel];
             
             y += accountHeight;
         }
         
+        // daily totals
+        UILabel *hourLabel = (UILabel *)[CellLoader newCellWithType:@"WeeklyHourCell"];
+        CGRect adjusted = hourLabel.frame;
+        adjusted.origin.x = x;
+        adjusted.origin.y = y;
+        adjusted.size.height = accountHeight;
+        adjusted.size.width = dayCellFrame.size.width;
+        hourLabel.frame = adjusted;
+        hourLabel.text = [NSString stringWithFormat:@"%3.1f", dayTotal];
+        hourLabel.font = [UIFont boldSystemFontOfSize:[UIFont systemFontSize]];
+        hourLabel.backgroundColor = [UIColor colorWithWhite:0.94 alpha:1.0];
+        
+        [hoursScrollView addSubview:hourLabel];
+        
+        y += accountHeight;
         x += dayCellFrame.size.width;
-        //accountsScrollView.contentSize = CGSizeMake(x, y);
     }
     
     daysScrollView.contentSize = CGSizeMake(x, daysScrollView.frame.size.height);
