@@ -114,7 +114,7 @@
 }
 
 - (IBAction)cancel:(id)sender {
-    [self.parentViewController dismissModalViewControllerAnimated:YES];
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 
